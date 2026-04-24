@@ -74,6 +74,23 @@
     transition: color var(--transition);
     position: relative;
   }
+  .nav-toggle {
+    display: none;
+    width: 38px; height: 38px;
+    border: none;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+    color: var(--text);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+  }
+  .nav-toggle:hover {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-1px);
+  }
+  .nav-toggle svg { width: 18px; height: 18px; }
   .nav-links a::after {
     content: ''; position: absolute; bottom: -3px; left: 0;
     width: 0; height: 1px; background: var(--gold);
@@ -101,7 +118,27 @@
     position: absolute; top: 0; bottom: 0; left: 50%;
     width: 0.5px; background: var(--border); opacity: 0.5;
   }
-  .hero-content { position: relative; z-index: 1; max-width: 700px; }
+  .hero-inner {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(240px, 0.9fr);
+    gap: 3rem;
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .hero-content { max-width: 700px; }
+  .hero-image-wrapper {
+    display: flex; justify-content: flex-end;
+  }
+  .hero-image {
+    width: 100%;
+    max-width: 360px;
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 30px 90px rgba(0,0,0,0.28);
+    object-fit: cover;
+  }
   .hero-tag {
     display: inline-flex; align-items: center; gap: 0.6rem;
     font-size: 0.72rem; font-weight: 400; letter-spacing: 0.2em;
@@ -345,6 +382,54 @@
     border-color: rgba(184,151,90,0.4);
   }
 
+  .screenshot-gallery {
+    background: var(--bg);
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .screenshot-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  .screenshot-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(198,169,107,0.2);
+  }
+  .screenshot-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+  .screenshot-card-content {
+    padding: 1rem;
+  }
+  .screenshot-card-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .screenshot-card-text {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 1024px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
+
   /* CONTACT */
   .contact { background: var(--bg); }
   .contact .section-title { color: #fff; }
@@ -475,6 +560,9 @@
     nav { padding: 1.25rem 2rem; }
     section { padding: 5rem 2rem; }
     .hero { padding: 8rem 2rem 5rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-image-wrapper { justify-content: center; }
+    .hero-image { max-width: 320px; }
     .about-inner { grid-template-columns: 1fr; gap: 3rem; }
     .skills-grid { grid-template-columns: repeat(2, 1fr); }
     .projects-grid { grid-template-columns: repeat(2, 1fr); }
@@ -482,8 +570,16 @@
     footer { padding: 2rem; }
   }
   @media (max-width: 640px) {
-    nav { padding: 1rem 1.25rem; }
-    .nav-links { gap: 1.25rem; }
+    nav { padding: 1rem 1rem; }
+    nav { justify-content: space-between; }
+    .hero-image { max-width: 100%; }
+    .nav-links { display: none; position: absolute; top: 100%; right: 1rem; left: 1rem; flex-direction: column; gap: 0; background: rgba(11,15,20,0.96); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 1rem 0.75rem; backdrop-filter: blur(12px); }
+    .nav-links.show { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; width: 100%; padding: 0.82rem 1rem; font-size: 0.88rem; letter-spacing: 0.1em; border-radius: 8px; color: var(--text); }
+    .nav-links a:hover { background: rgba(255,255,255,0.04); color: var(--gold); }
+    .nav-links a::after { display: none; }
+    .nav-toggle { display: inline-flex; }
     section { padding: 4rem 1.25rem; }
     .hero { padding: 6rem 1.25rem 4rem; }
     .skills-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -501,6 +597,11 @@
   <a href="#hero" class="nav-logo">
   <span class="logo-mark">TBKNS</span>
 </a>
+  <button class="nav-toggle" aria-label="Toggle navigation" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 6h18M3 12h18M3 18h18" />
+    </svg>
+  </button>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -514,13 +615,18 @@
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid-line"></div>
-  <div class="hero-content">
-    <div class="hero-tag">Full-Stack Developer · Economist · Data Analyst · Consultant</div>
-    <h1 class="hero-name">Oluwasegun<br><em>Emmanuel</em> Tobi</h1>
-    <p class="hero-bio">
-      I build scalable, user-centered digital solutions — blending clean engineering with
-      economic insight and data-driven thinking to solve real-world problems.
-    </p>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag">Full-Stack Developer · Economist · Data Analyst · Consultant</div>
+      <h1 class="hero-name">Oluwasegun<br><em>Emmanuel</em> Tobi</h1>
+      <p class="hero-bio">
+        I build scalable, user-centered digital solutions — blending clean engineering with
+        economic insight and data-driven thinking to solve real-world problems.
+      </p>
+    </div>
+    <div class="hero-image-wrapper">
+      <img src="image.jpg" alt="Oluwasegun Emmanuel Tobi" class="hero-image">
+    </div>
     <div class="hero-cta">
       <a href="#projects" class="btn-primary">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 7h12M7 1l6 6-6 6" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -718,6 +824,42 @@
   </div>
 </section>
 
+<section class="screenshot-gallery" id="screenshots">
+  <div class="section-label">Screenshots</div>
+  <h2 class="section-title">Project Screenshots</h2>
+  <p class="projects-intro reveal">These screenshot cards are ready for your actual project images. Replace the placeholder text with your real screenshots or hosted preview links.</p>
+  <div class="gallery-grid reveal">
+    <div class="screenshot-card">
+      <img src="e-commerce.png" alt="E-commerce Platform Screenshot" class="screenshot-image">
+      <div class="screenshot-card-content">
+        <div class="screenshot-card-title">E-commerce Platform</div>
+        <p class="screenshot-card-text">Online shopping platform with product listings, user interaction, and seamless transaction flow.</p>
+      </div>
+    </div>
+    <div class="screenshot-card">
+      <img src="Edu-screenshot.png" alt="EduHub Screenshot" class="screenshot-image">
+      <div class="screenshot-card-content">
+        <div class="screenshot-card-title">EduHub</div>
+        <p class="screenshot-card-text">Modern web platform for students to access academic resources and tools in one centralized system.</p>
+      </div>
+    </div>
+    <div class="screenshot-card">
+      <img src="RentApp.png" alt="RentFair App Screenshot" class="screenshot-image">
+      <div class="screenshot-card-content">
+        <div class="screenshot-card-title">RentFair App</div>
+        <p class="screenshot-card-text">Housing solution connecting tenants directly with landlords for transparency and fairness.</p>
+      </div>
+    </div>
+    <div class="screenshot-card">
+      <img src="drivers.png" alt="Drivers Management System Screenshot" class="screenshot-image">
+      <div class="screenshot-card-content">
+        <div class="screenshot-card-title">Drivers Management System</div>
+        <p class="screenshot-card-text">System for managing driver records, tracking activities, and organizing transportation operations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="section-label" style="color: var(--gold);">Contact</div>
@@ -853,6 +995,15 @@
       }, 3000);
     }
   });
-</script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (toggle && navLinks) {
+      toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+      });
+    }
+  });</script>
 </body>
 </html>

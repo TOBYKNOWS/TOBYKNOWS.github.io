@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Oluwasegun Emmanuel Tobi &mdash; Full-Stack Developer</title>
+<title>Oluwasegun Emmanuel Tobi | Full-Stack Developer</title>
 <link rel="icon" type="image/png" href="logo-transparent.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +35,52 @@ body {
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
+}
+body.is-loading { overflow: hidden; }
+
+/* Branded page intro */
+.site-loader {
+  position: fixed; inset: 0; z-index: 1000;
+  display: grid; place-items: center;
+  background:
+    radial-gradient(circle at center, rgba(200,170,110,0.1), transparent 30%),
+    var(--bg);
+  transition: opacity 0.5s var(--ease), visibility 0.5s var(--ease);
+}
+.site-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.loader-mark {
+  width: 126px; height: 126px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  position: relative;
+  background: rgba(255,255,255,0.015);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.loader-mark::before {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: inherit;
+  border: 2px solid transparent;
+  border-top-color: var(--gold);
+  border-right-color: rgba(226,204,151,0.36);
+  animation: loaderSpin 1.05s linear infinite;
+}
+.loader-logo {
+  display: block;
+  width: 84px; height: 60px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(200,170,110,0.14));
+}
+.loader-label {
+  position: absolute; top: calc(100% + 1.15rem); left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  color: var(--gold-light);
+  font-size: 0.64rem; letter-spacing: 0.28em; text-transform: uppercase;
 }
 
 /* ── NOISE OVERLAY ── */
@@ -110,6 +156,20 @@ nav {
 }
 .nav-links a:hover { color: var(--gold); }
 .nav-links a:hover::after { width: 100%; }
+.nav-links .nav-hire {
+  min-height: 42px;
+  padding: 0 1.3rem;
+  color: #07090d;
+  background: var(--gold);
+  border-radius: 100px;
+}
+.nav-links .nav-hire::after { display: none; }
+.nav-links .nav-hire:hover {
+  color: #07090d;
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(200,170,110,0.22);
+}
 
 .nav-toggle {
   display: none; width: 38px; height: 38px;
@@ -149,34 +209,43 @@ nav {
 }
 
 .hero-tag {
-  display: inline-flex; align-items: center; gap: 0.7rem;
-  font-size: 0.68rem; font-weight: 400; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--gold);
-  border: 0.5px solid var(--gold-border);
-  padding: 0.45rem 1.1rem; border-radius: 100px;
-  margin-bottom: 2.2rem;
-  background: rgba(200,170,110,0.06);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.45rem;
+  position: relative;
+  padding-left: 1.15rem;
+  margin-bottom: 2rem;
   animation: fadeUp 0.9s 0.1s both;
 }
-.hero-tag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+.hero-tag::before {
+  content: '';
+  position: absolute; top: 0.12rem; bottom: 0.12rem; left: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gold-light), rgba(200,170,110,0.2));
+}
+.hero-tag-title {
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.23em;
+  text-transform: uppercase; color: var(--gold-light);
+}
+.hero-tag-subtitle {
+  font-size: 0.78rem; font-weight: 300; letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+}
 
 .hero-name {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(3rem, 6.2vw, 5.8rem);
-  font-weight: 500; line-height: 1.04;
-  color: var(--text); letter-spacing: 0;
+  font-weight: 500; line-height: 1.02;
+  color: var(--text); letter-spacing: 0.01em;
   margin-bottom: 1.75rem;
   animation: fadeUp 0.9s 0.2s both;
 }
 .hero-name em {
-  font-style: italic;
+  font-style: normal;
   font-weight: 500;
-  color: var(--gold);
+  color: var(--gold-light);
 }
 .hero-name .line-accent {
   display: block;
-  background: linear-gradient(90deg, var(--text) 0%, rgba(237,240,244,0.7) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .hero-name .name-line {
   display: block;
@@ -224,6 +293,20 @@ nav {
   transition: var(--transition);
 }
 .btn-ghost:hover { border-color: var(--gold); color: var(--gold-light); }
+.btn-hire {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  min-height: 46px; padding: 0.76rem 1.5rem;
+  border: 1px solid var(--gold-border); border-radius: 100px;
+  color: var(--gold-light); background: rgba(200,170,110,0.06);
+  font-size: 0.76rem; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; text-decoration: none;
+  transition: var(--transition);
+}
+.btn-hire:hover {
+  border-color: rgba(200,170,110,0.55);
+  background: rgba(200,170,110,0.16);
+  transform: translateY(-2px);
+}
 
 /* Image side */
 .hero-image-wrapper {
@@ -244,11 +327,14 @@ nav {
   50% { opacity: 0.8; transform: scale(1.01); }
 }
 .hero-image {
-  width: 100%; max-width: 380px;
+  display: block;
+  width: min(100%, 420px);
+  aspect-ratio: 1 / 1;
   border-radius: 20px;
   border: 1px solid rgba(255,255,255,0.07);
   box-shadow: 0 40px 100px rgba(0,0,0,0.45), 0 0 0 1px rgba(200,170,110,0.1);
   object-fit: cover;
+  object-position: center center;
   display: block;
   position: relative; z-index: 1;
 }
@@ -428,12 +514,19 @@ section { padding: 8rem 4rem; }
   color: var(--text-mid); line-height: 1.85; margin-bottom: 3.5rem;
 }
 
-.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.35rem;
+  align-items: stretch;
+}
+@keyframes loaderSpin { to { transform: rotate(360deg); } }
 
 .project-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 8px; padding: 2.1rem;
+  border-radius: 14px; padding: 1.75rem;
+  min-height: 360px;
   display: flex; flex-direction: column;
   transition: var(--transition);
   position: relative; overflow: hidden;
@@ -444,7 +537,6 @@ section { padding: 8rem 4rem; }
   background:
     linear-gradient(135deg, rgba(200,170,110,0.08), transparent 42%),
     var(--bg-card);
-  grid-column: span 2;
 }
 
 /* Shimmer line on hover */
@@ -467,26 +559,26 @@ section { padding: 8rem 4rem; }
 
 .project-number {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 3.2rem; font-weight: 300;
+  font-size: 2.65rem; font-weight: 300;
   color: rgba(200,170,110,0.12); line-height: 1;
-  margin-bottom: 0.8rem; letter-spacing: -0.02em;
+  margin-bottom: 0.65rem; letter-spacing: -0.02em;
 }
 
 .project-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem; font-weight: 500;
+  font-size: 1.42rem; font-weight: 500;
   color: var(--text); margin-bottom: 0.75rem; line-height: 1.2;
 }
 
 .project-desc {
   font-size: 0.88rem; font-weight: 300;
   color: var(--text-mid); line-height: 1.8;
-  flex: 1; margin-bottom: 1.5rem;
+  flex: 1; margin-bottom: 1.25rem;
 }
 
 .project-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: auto; }
 .project-tech { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0.4rem; }
-.project-actions { display: flex; gap: 0.55rem; flex-wrap: wrap; margin-top: 1.25rem; }
+.project-actions { display: flex; gap: 0.55rem; flex-wrap: wrap; margin-top: 1rem; }
 .project-link {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 32px; padding: 0.45rem 0.82rem;
@@ -507,7 +599,7 @@ section { padding: 8rem 4rem; }
   padding: 0.25rem 0.7rem; border-radius: 100px;
   border: 0.5px solid rgba(200,170,110,0.22);
 }
-.tech-pill.wip {
+.tech-pill.live {
   color: #b89040;
   background: rgba(200,170,110,0.08);
   border-color: rgba(200,170,110,0.2);
@@ -755,7 +847,7 @@ footer p {
   .hero { padding: 8.75rem 2.5rem 5rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
   .hero-image-wrapper { justify-content: center; }
-  .hero-image { max-width: 340px; }
+  .hero-image { width: min(100%, 380px); }
   .about-inner { grid-template-columns: 1fr; gap: 3.5rem; }
   .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
   .hero-lines { display: none; }
@@ -777,10 +869,28 @@ footer p {
   .screenshot-image { height: 220px; }
   .screenshot-card-content { padding: 1.35rem 1.25rem; }
   .slider-controls { top: 110px; }
-  .hero-name { font-size: clamp(2.85rem, 14vw, 3.75rem); line-height: 1.05; }
-  .hero { padding: 7rem 1.25rem 4rem; }
+  .hero { min-height: auto; padding: 7rem 1.25rem 4.25rem; }
+  .hero-inner { gap: 2.5rem; }
+  .hero-tag {
+    gap: 0.38rem;
+    padding-left: 0.85rem;
+    margin-bottom: 1.55rem;
+  }
+  .hero-tag-title { font-size: 0.59rem; letter-spacing: 0.2em; }
+  .hero-tag-subtitle { font-size: 0.67rem; letter-spacing: 0.12em; line-height: 1.55; }
+  .hero-name {
+    font-size: clamp(2.45rem, 12.5vw, 3.05rem);
+    line-height: 1.09;
+    margin-bottom: 1.2rem;
+  }
+  .hero-bio {
+    font-size: 0.94rem;
+    line-height: 1.75;
+    margin-bottom: 2.1rem;
+  }
+  .hero-cta { gap: 1rem; }
   .hero-image-wrapper::before { display: none; }
-  .hero-image { max-width: 100%; }
+  .hero-image { width: 100%; }
   .skills-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
   .about-stats { grid-template-columns: 1fr 1fr; }
   .hero-scroll { display: none; }
@@ -806,11 +916,32 @@ footer p {
   }
   .nav-links a:hover { background: rgba(255,255,255,0.04); color: var(--gold); }
   .nav-links a::after { display: none; }
+  .nav-links .nav-hire {
+    display: flex; justify-content: center;
+    margin-top: 0.45rem;
+    background: var(--gold); color: #07090d;
+  }
+  .nav-links .nav-hire:hover { background: var(--gold-light); color: #07090d; }
   .nav-toggle { display: inline-flex; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 </style>
 </head>
-<body>
+<body class="is-loading">
+
+<div class="site-loader" id="siteLoader" aria-label="Loading portfolio">
+  <div class="loader-mark">
+    <img src="logo-transparent.png" alt="" class="loader-logo">
+    <span class="loader-label">TBKNS Portfolio</span>
+  </div>
+</div>
 
 <!-- ══ NAV ══ -->
 <nav>
@@ -827,7 +958,7 @@ footer p {
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="MAIN_CV.pdf" target="_blank" rel="noopener">CV</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-hire">Hire Me</a></li>
   </ul>
 </nav>
 
@@ -835,13 +966,16 @@ footer p {
 <section class="hero" id="hero">
   <div class="hero-inner">
     <div class="hero-content">
-      <div class="hero-tag">Full-Stack Developer &middot; Economist &middot; Data Analyst &middot; Consultant</div>
+      <div class="hero-tag">
+        <span class="hero-tag-title">Full-Stack Developer</span>
+        <span class="hero-tag-subtitle">Economist and Data Analyst</span>
+      </div>
       <h1 class="hero-name">
         <span class="name-line">Oluwasegun</span>
         <span class="line-accent"><em>Emmanuel</em> Tobi</span>
       </h1>
       <p class="hero-bio">
-        I build scalable, user-centered digital solutions &mdash; blending clean engineering with
+        I build scalable, user-centered digital solutions, blending clean engineering with
         economic insight and data-driven thinking to solve real-world problems.
       </p>
       <div class="hero-cta">
@@ -850,11 +984,11 @@ footer p {
           View Work
         </a>
         <a href="MAIN_CV.pdf" target="_blank" rel="noopener" class="btn-ghost">Download CV</a>
-        <a href="#contact" class="btn-ghost">Get in Touch &rarr;</a>
+        <a href="#contact" class="btn-hire">Hire Me &rarr;</a>
       </div>
     </div>
     <div class="hero-image-wrapper">
-      <img src="image.jpg" alt="Oluwasegun Emmanuel Tobi" class="hero-image">
+      <img src="image.png" alt="Oluwasegun Emmanuel Tobi" class="hero-image">
     </div>
   </div>
   <div class="hero-scroll">
@@ -880,7 +1014,7 @@ footer p {
       </p>
       <div class="about-stats">
         <div class="stat">
-          <div class="stat-number">7+</div>
+          <div class="stat-number">8+</div>
           <div class="stat-label">Projects Built</div>
         </div>
         <div class="stat">
@@ -904,7 +1038,7 @@ footer p {
       </div>
       <div class="about-card">
         <div class="about-card-title">Current Focus</div>
-        <p>Building RentFair &mdash; a full-stack housing platform designed to reduce rental exploitation and bring transparency to the tenant-landlord relationship.</p>
+        <p>Recently deployed RentFair, a full-stack housing platform designed to reduce rental exploitation and bring transparency to the tenant-landlord relationship.</p>
       </div>
       <div class="about-card">
         <div class="about-card-title">Background</div>
@@ -974,26 +1108,43 @@ footer p {
 <section class="projects" id="projects">
   <div class="section-label">Portfolio</div>
   <h2 class="section-title">Selected Work</h2>
-  <p class="projects-intro reveal">A collection of projects that reflect my commitment to practical, user-centered engineering &mdash; from education platforms to housing reform.</p>
+  <p class="projects-intro reveal">A collection of projects that reflect my commitment to practical, user-centered engineering, from housing technology to polished business web experiences.</p>
   <div class="projects-grid">
 
     <div class="project-card featured reveal">
       <div class="project-number">01</div>
       <h3 class="project-title">RentFair</h3>
-      <p class="project-desc">A housing platform designed to reduce rental exploitation by helping tenants connect more transparently with landlords while still accounting for fair agent participation.</p>
+      <p class="project-desc">A deployed housing platform designed to reduce rental exploitation by helping tenants connect more transparently with landlords while still accounting for fair agent participation.</p>
       <div class="project-tech">
-        <span class="tech-pill wip">In Progress</span>
+        <span class="tech-pill live">Live</span>
         <span class="tech-pill">Full-Stack</span>
         <span class="tech-pill">Housing Tech</span>
+        <span class="tech-pill">Render</span>
       </div>
       <div class="project-actions">
+        <a href="https://rentfair.onrender.com" target="_blank" rel="noopener" class="project-link">Visit Site</a>
         <a href="#screenshots" class="project-link">Preview</a>
-        <a href="#contact" class="project-link">Discuss</a>
       </div>
     </div>
 
     <div class="project-card reveal">
       <div class="project-number">02</div>
+      <h3 class="project-title">Faktop Global Limited</h3>
+      <p class="project-desc">A deployed corporate website for a civil infrastructure and construction company, presenting its services, credibility, and project assessment pathway in a polished brand experience.</p>
+      <div class="project-tech">
+        <span class="tech-pill live">Live</span>
+        <span class="tech-pill">Corporate Website</span>
+        <span class="tech-pill">Construction</span>
+        <span class="tech-pill">Netlify</span>
+      </div>
+      <div class="project-actions">
+        <a href="https://faktop.netlify.app" target="_blank" rel="noopener" class="project-link">Visit Site</a>
+        <a href="#screenshots" class="project-link">Preview</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-number">03</div>
       <h3 class="project-title">TBKNS HUB</h3>
       <p class="project-desc">A live brand website for my digital solutions studio, presenting services, process, contact flows, and agency positioning for businesses that need technology support.</p>
       <div class="project-tech">
@@ -1008,7 +1159,7 @@ footer p {
     </div>
 
     <div class="project-card reveal">
-      <div class="project-number">03</div>
+      <div class="project-number">04</div>
       <h3 class="project-title">EduHub</h3>
       <p class="project-desc">A student-focused academic resource hub with a clean interface for organising tools, materials, and learning support in one central place.</p>
       <div class="project-tech">
@@ -1022,7 +1173,7 @@ footer p {
     </div>
 
     <div class="project-card reveal">
-      <div class="project-number">04</div>
+      <div class="project-number">05</div>
       <h3 class="project-title">Event Management System</h3>
       <p class="project-desc">A web application for event scheduling, bookings, and coordination, built to simplify event organisation for individuals and businesses.</p>
       <div class="project-tech">
@@ -1036,7 +1187,7 @@ footer p {
     </div>
 
     <div class="project-card reveal">
-      <div class="project-number">05</div>
+      <div class="project-number">06</div>
       <h3 class="project-title">E-Commerce Platform</h3>
       <p class="project-desc">An online shopping platform with product listings, user interaction, and transaction flow. Designed with a focus on performance and seamless user experience.</p>
       <div class="project-tech">
@@ -1050,7 +1201,7 @@ footer p {
     </div>
 
     <div class="project-card reveal">
-      <div class="project-number">06</div>
+      <div class="project-number">07</div>
       <h3 class="project-title">Driver Management System</h3>
       <p class="project-desc">A system built to manage driver records, track activities, and organise transportation operations. Focused on robust data handling, structure, and usability.</p>
       <div class="project-tech">
@@ -1064,7 +1215,7 @@ footer p {
     </div>
 
     <div class="project-card reveal">
-      <div class="project-number">07</div>
+      <div class="project-number">08</div>
       <h3 class="project-title">Personal Portfolio</h3>
       <p class="project-desc">A responsive portfolio website showcasing my skills, projects, and professional journey with careful attention to design, hierarchy, and performance.</p>
       <div class="project-tech">
@@ -1084,10 +1235,38 @@ footer p {
 <section class="screenshot-gallery" id="screenshots">
   <div class="section-label">Screenshots</div>
   <h2 class="section-title">Project Previews</h2>
-  <p class="projects-intro reveal">Selected interface previews from the e-commerce platform, EduHub, RentFair, and the driver management system.</p>
+  <p class="projects-intro reveal">Selected interfaces from live builds, including RentFair's verified housing experience and Faktop Global Limited's corporate website.</p>
   <div class="gallery-inner reveal">
     <div class="gallery-wrapper">
       <div class="gallery-track">
+        <div class="screenshot-card">
+          <img src="faktop-home.png" alt="Faktop Global Limited website home page" class="screenshot-image">
+          <div class="screenshot-card-content">
+            <div class="screenshot-card-title">Faktop Global Limited</div>
+            <p class="screenshot-card-text">Deployed civil infrastructure website with a premium corporate presentation and clear project assessment call to action.</p>
+          </div>
+        </div>
+        <div class="screenshot-card">
+          <img src="rentfair-home.png" alt="RentFair Homes landing page" class="screenshot-image">
+          <div class="screenshot-card-content">
+            <div class="screenshot-card-title">RentFair Homes</div>
+            <p class="screenshot-card-text">Landing experience for finding verified homes, land, and rentals with a clear trust-first property search direction.</p>
+          </div>
+        </div>
+        <div class="screenshot-card">
+          <img src="rentfair-search.png" alt="RentFair property search and trust score interface" class="screenshot-image">
+          <div class="screenshot-card-content">
+            <div class="screenshot-card-title">RentFair Search</div>
+            <p class="screenshot-card-text">A property search workflow supported by verification, pricing context, and a visible trust-score summary.</p>
+          </div>
+        </div>
+        <div class="screenshot-card">
+          <img src="rentfair-about.png" alt="About RentFair Homes page" class="screenshot-image">
+          <div class="screenshot-card-content">
+            <div class="screenshot-card-title">About RentFair</div>
+            <p class="screenshot-card-text">Brand and mission page communicating transparency, trust, and accessibility in the Nigerian property market.</p>
+          </div>
+        </div>
         <div class="screenshot-card">
           <img src="e-commerce.png" alt="E-commerce Platform Screenshot" class="screenshot-image">
           <div class="screenshot-card-content">
@@ -1100,13 +1279,6 @@ footer p {
           <div class="screenshot-card-content">
             <div class="screenshot-card-title">EduHub</div>
             <p class="screenshot-card-text">Modern web platform for students to access academic resources and tools in one centralised system.</p>
-          </div>
-        </div>
-        <div class="screenshot-card">
-          <img src="RentApp.png" alt="RentFair App Screenshot" class="screenshot-image">
-          <div class="screenshot-card-content">
-            <div class="screenshot-card-title">RentFair App</div>
-            <p class="screenshot-card-text">Housing solution connecting tenants directly with landlords for transparency and fairness.</p>
           </div>
         </div>
         <div class="screenshot-card">
@@ -1199,6 +1371,16 @@ footer p {
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// Branded loading intro
+const siteLoader = document.getElementById('siteLoader');
+const dismissLoader = () => {
+  if (!siteLoader || siteLoader.classList.contains('is-hidden')) return;
+  siteLoader.classList.add('is-hidden');
+  document.body.classList.remove('is-loading');
+};
+window.addEventListener('load', () => setTimeout(dismissLoader, 450), { once: true });
+setTimeout(dismissLoader, 2600);
 
 // ── Scroll reveal
 const reveals = document.querySelectorAll('.reveal');

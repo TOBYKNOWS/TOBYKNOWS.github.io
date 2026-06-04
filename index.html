@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Oluwasegun Emmanuel Tobi | Full-Stack Developer</title>
-<link rel="icon" type="image/png" href="logo-transparent.png">
+<link rel="icon" type="image/png" href="tbkns-logo-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -53,34 +53,17 @@ body.is-loading { overflow: hidden; }
   pointer-events: none;
 }
 .loader-mark {
-  width: 126px; height: 126px;
-  display: grid; place-items: center;
-  border-radius: 50%;
-  position: relative;
-  background: rgba(255,255,255,0.015);
-  border: 1px solid rgba(255,255,255,0.05);
-}
-.loader-mark::before {
-  content: '';
-  position: absolute; inset: -1px;
-  border-radius: inherit;
-  border: 2px solid transparent;
-  border-top-color: var(--gold);
-  border-right-color: rgba(226,204,151,0.36);
-  animation: loaderSpin 1.05s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .loader-logo {
   display: block;
-  width: 84px; height: 60px;
+  height: 76px;
+  width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 12px rgba(200,170,110,0.14));
-}
-.loader-label {
-  position: absolute; top: calc(100% + 1.15rem); left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  color: var(--gold-light);
-  font-size: 0.64rem; letter-spacing: 0.28em; text-transform: uppercase;
+  transform-origin: center;
+  animation: loaderLogoPulse 1.35s ease-in-out infinite;
 }
 
 /* ── NOISE OVERLAY ── */
@@ -107,35 +90,51 @@ nav {
 
 .nav-logo {
   display: inline-flex; align-items: center; justify-content: center;
-  width: clamp(92px, 9vw, 120px);
-  height: clamp(48px, 5vw, 64px);
+  width: auto;
+  height: auto;
   text-decoration: none;
   position: relative;
 }
-.nav-logo::before {
-  content: '';
-  position: absolute; inset: 9px -8px 5px;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0.34), transparent 68%);
-  box-shadow: inset 0 1px 6px rgba(0,0,0,0.55);
+.nav-logo .logo-icon {
+  width: auto;
+  height: 42px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
 }
-.nav-logo::after {
-  content: '';
-  position: absolute; bottom: -4px; left: 12%; right: 12%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(226,204,151,0.55), transparent);
-  opacity: 0.42;
+.nav-logo:hover .logo-icon {
+  transform: scale(1.04);
 }
 .brand-logo-img {
   display: block;
   width: 100%; height: 100%;
   object-fit: contain;
-  opacity: 0.9;
-  position: relative; z-index: 1;
-  filter:
-    drop-shadow(0 -1px 0 rgba(0,0,0,0.95))
-    drop-shadow(0 1px 0 rgba(226,204,151,0.24))
-    drop-shadow(0 0 10px rgba(200,170,110,0.06));
+}
+.brand-logo-img.logo-icon {
+  width: auto;
+  height: 24px;
+  flex-shrink: 0;
+}
+.footer-logo .logo-icon {
+  width: auto;
+  height: 38px;
+}
+.brand-text {
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1;
+}
+.footer-logo .brand-text {
+  color: #d8dde6;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  background: linear-gradient(180deg, #ffffff 0%, #d8dde6 48%, #8f98a6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.18);
 }
 
 .nav-links { display: flex; align-items: center; gap: 2.75rem; list-style: none; }
@@ -520,7 +519,10 @@ section { padding: 8rem 4rem; }
   gap: 1.35rem;
   align-items: stretch;
 }
-@keyframes loaderSpin { to { transform: rotate(360deg); } }
+@keyframes loaderLogoPulse {
+  0%, 100% { opacity: 0.82; transform: scale(0.96); }
+  50% { opacity: 1; transform: scale(1); }
+}
 
 .project-card {
   background: var(--bg-card);
@@ -792,24 +794,10 @@ footer p {
 }
 
 .footer-logo {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: clamp(150px, 18vw, 220px);
-  height: clamp(80px, 9vw, 112px);
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  width: auto;
+  height: auto;
   color: var(--gold-light); text-decoration: none; position: relative;
-}
-.footer-logo::before {
-  content: '';
-  position: absolute; inset: 9px -8px 5px;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0.34), transparent 68%);
-  box-shadow: inset 0 1px 6px rgba(0,0,0,0.55);
-}
-.footer-logo::after {
-  content: '';
-  position: absolute; bottom: -4px; left: 12%; right: 12%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(226,204,151,0.55), transparent);
-  opacity: 0.42;
 }
 
 /* ═══════════ DIVIDER ═══════════ */
@@ -863,7 +851,11 @@ footer p {
 
 @media (max-width: 640px) {
   nav { padding: 0.8rem 1.25rem; }
-  .nav-logo { width: 92px; height: 48px; }
+  .nav-logo .logo-icon { width: auto; height: 34px; }
+  .footer-logo .logo-icon { width: auto; height: 38px; }
+  .brand-text { font-size: 0.84rem; letter-spacing: 0.15em; }
+  .footer-logo .brand-text { font-size: 0.96rem; letter-spacing: 0.16em; }
+  .loader-logo { height: 64px; }
   section { padding: 4.5rem 1.25rem; }
   .screenshot-gallery { padding: 4.5rem 1.25rem; }
   .screenshot-image { height: 220px; }
@@ -896,7 +888,7 @@ footer p {
   .hero-scroll { display: none; }
   footer { flex-direction: column; gap: 1.1rem; text-align: center; padding: 2.25rem 1.25rem; }
   footer p { font-size: 0.84rem; }
-  .footer-logo { width: 150px; height: 78px; }
+  .footer-logo { width: auto; height: auto; gap: 10px; }
   .nav-links {
     display: none; position: absolute; top: 100%;
     right: 1rem; left: 1rem; flex-direction: column;
@@ -938,15 +930,14 @@ footer p {
 
 <div class="site-loader" id="siteLoader" aria-label="Loading portfolio">
   <div class="loader-mark">
-    <img src="logo-transparent.png" alt="" class="loader-logo">
-    <span class="loader-label">TBKNS Portfolio</span>
+    <img src="tbkns-logo-icon.png" alt="TBKNS logo icon" class="loader-logo" width="389" height="351">
   </div>
 </div>
 
 <!-- ══ NAV ══ -->
 <nav>
-  <a href="#hero" class="nav-logo" aria-label="TBKNS Beyond Limits home">
-    <img src="logo-transparent.png" alt="" class="brand-logo-img" width="1021" height="722">
+  <a href="#hero" class="nav-logo" aria-label="TBKNS home">
+    <img src="tbkns-logo-icon.png" alt="TBKNS logo icon" class="brand-logo-img logo-icon" width="389" height="351">
   </a>
   <button class="nav-toggle" aria-label="Toggle navigation" type="button">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -1362,8 +1353,9 @@ footer p {
 
 <!-- ══ FOOTER ══ -->
 <footer>
-  <a href="#hero" class="footer-logo" aria-label="TBKNS Beyond Limits home">
-    <img src="logo-transparent.png" alt="" class="brand-logo-img" width="1021" height="722">
+  <a href="#hero" class="footer-logo" aria-label="TBKNS home">
+    <img src="tbkns-logo-icon.png" alt="TBKNS logo icon" class="brand-logo-img logo-icon" width="389" height="351">
+    <span class="brand-text">TBKNS</span>
   </a>
   <p>&copy; <span id="year">2026</span> Oluwasegun Emmanuel Tobi. All rights reserved.</p>
   <p>Built with precision &amp; purpose.</p>

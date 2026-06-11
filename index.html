@@ -500,6 +500,13 @@ section { padding: 8rem 4rem; }
   font-size: 0.92rem; font-weight: 300;
   color: rgba(255,255,255,0.7); line-height: 1.7;
 }
+[data-theme="light"] .about-card {
+  background: var(--bg-card2);
+  border-color: rgba(20,28,38,0.08);
+}
+[data-theme="light"] .about-card p {
+  color: var(--text-mid);
+}
 
 /* ═══════════ SKILLS ═══════════ */
 .skills { background: var(--bg); }
@@ -553,6 +560,31 @@ section { padding: 8rem 4rem; }
   transition: var(--transition);
 }
 .skill-tag:hover { background: rgba(200,170,110,0.1); border-color: var(--gold-border); color: var(--gold-light); }
+
+[data-theme="light"] .skill-group {
+  background: var(--bg-card2);
+  border-color: rgba(20,28,38,0.08);
+}
+[data-theme="light"] .skill-group:hover {
+  border-color: rgba(155,120,56,0.22);
+  box-shadow: 0 20px 50px rgba(20,28,38,0.08);
+}
+[data-theme="light"] .skill-group-icon {
+  background: rgba(155,120,56,0.08);
+  border-color: rgba(155,120,56,0.16);
+}
+[data-theme="light"] .skill-tag {
+  color: var(--text);
+  background: rgba(20,28,38,0.04);
+  border-color: rgba(20,28,38,0.08);
+}
+[data-theme="light"] .skill-tag:hover {
+  background: rgba(155,120,56,0.12);
+  color: var(--bg);
+}
+[data-theme="light"] .skill-group::after {
+  background: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(155,120,56,0.08) 0%, transparent 70%);
+}
 
 /* ═══════════ PROJECTS ═══════════ */
 .projects { background: var(--bg-soft); }
@@ -787,6 +819,22 @@ section { padding: 8rem 4rem; }
   box-shadow: 0 22px 56px rgba(0,0,0,0.18);
 }
 
+[data-theme="light"] .premium-panel,
+[data-theme="light"] .about-card,
+[data-theme="light"] .project-card,
+[data-theme="light"] .visual-skill,
+[data-theme="light"] .metric-card,
+[data-theme="light"] .github-card,
+[data-theme="light"] .testimonial-card,
+[data-theme="light"] .article-card,
+[data-theme="light"] .timeline-item,
+[data-theme="light"] .architecture-card,
+[data-theme="light"] .recruiter-card {
+  background: #ffffff;
+  border-color: rgba(20,28,38,0.08);
+  box-shadow: 0 20px 45px rgba(20,28,38,0.06);
+}
+
 .feature-hero {
   min-height: 420px;
   display: grid;
@@ -795,7 +843,7 @@ section { padding: 8rem 4rem; }
     linear-gradient(180deg, transparent 0%, rgba(7,9,13,0.76) 76%),
     url("rentfair-home.png") center top / cover;
 }
-[data-theme="light"] .feature-hero { background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.88)), url("rentfair-home.png") center top / cover; }
+[data-theme="light"] .feature-hero { background: linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0.96)), url("rentfair-home.png") center top / cover; }
 .feature-kicker,
 .card-kicker {
   font-size: 0.65rem;
@@ -1069,6 +1117,16 @@ section { padding: 8rem 4rem; }
 .contact-link:hover::before { opacity: 1; transform: translateX(0); }
 .contact-link:hover { border-color: rgba(200,170,110,0.4); color: #fff; transform: translateX(5px); }
 
+[data-theme="light"] .contact-link {
+  background: rgba(20,28,38,0.04);
+  border-color: rgba(20,28,38,0.08);
+  color: var(--text);
+}
+[data-theme="light"] .contact-link:hover {
+  background: rgba(155,120,56,0.12);
+  color: var(--bg);
+}
+
 .contact-link-label {
   font-size: 0.62rem; letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--gold);
@@ -1093,9 +1151,15 @@ section { padding: 8rem 4rem; }
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.85rem; font-weight: 400; color: #fff; margin-bottom: 0.5rem;
 }
+[data-theme="light"] .contact-right h3 {
+  color: var(--text);
+}
 .contact-right > p {
   font-size: 0.88rem; font-weight: 300;
   color: rgba(255,255,255,0.5); margin-bottom: 2.1rem; line-height: 1.7;
+}
+[data-theme="light"] .contact-right > p {
+  color: var(--text-mid);
 }
 
 .contact-field { margin-bottom: 1.25rem; }
@@ -1103,6 +1167,9 @@ section { padding: 8rem 4rem; }
   display: block; font-size: 0.65rem;
   letter-spacing: 0.2em; text-transform: uppercase;
   color: rgba(255,255,255,0.35); margin-bottom: 0.55rem;
+}
+[data-theme="light"] .contact-field label {
+  color: var(--text-mid);
 }
 .contact-field input,
 .contact-field textarea {
@@ -1115,12 +1182,26 @@ section { padding: 8rem 4rem; }
   outline: none; resize: none;
   transition: border-color var(--transition), background var(--transition);
 }
+[data-theme="light"] .contact-field input,
+[data-theme="light"] .contact-field textarea {
+  background: var(--bg-card2);
+  border: 0.5px solid var(--border);
+  color: var(--text);
+}
 .contact-field input::placeholder,
 .contact-field textarea::placeholder { color: rgba(255,255,255,0.2); }
+[data-theme="light"] .contact-field input::placeholder,
+[data-theme="light"] .contact-field textarea::placeholder {
+  color: var(--text-mid);
+}
 .contact-field input:focus,
 .contact-field textarea:focus {
   border-color: rgba(200,170,110,0.5);
   background: rgba(255,255,255,0.06);
+}
+[data-theme="light"] .contact-field input:focus,
+[data-theme="light"] .contact-field textarea:focus {
+  background: rgba(248,247,243,0.9);
 }
 
 .btn-send {
@@ -1149,6 +1230,10 @@ footer {
   padding: 2.35rem 4rem;
   display: flex; align-items: center; justify-content: space-between; gap: 2rem;
   border-top: 1px solid var(--border);
+}
+[data-theme="light"] footer {
+  background: var(--bg-soft);
+  border-top-color: var(--border);
 }
 footer p {
   font-size: 0.9rem; font-weight: 300;

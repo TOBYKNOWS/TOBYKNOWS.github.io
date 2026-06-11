@@ -1,9 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Oluwasegun Emmanuel Tobi | Full-Stack Developer</title>
+<meta name="description" content="Portfolio of Oluwasegun Emmanuel Tobi, a full-stack developer, economist, and data analyst building RentFair and user-centered digital products.">
+<meta name="author" content="Oluwasegun Emmanuel Tobi">
+<meta name="keywords" content="Oluwasegun Emmanuel Tobi, TBKNS, full-stack developer, Django developer, Flask developer, RentFair, portfolio, data analyst, economist">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tobyknows.dev/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Oluwasegun Emmanuel Tobi | Full-Stack Developer">
+<meta property="og:description" content="Premium portfolio featuring RentFair, full-stack projects, case studies, technical architecture, and career highlights.">
+<meta property="og:image" content="logo-transparent.png">
+<meta property="og:url" content="https://tobyknows.dev/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Oluwasegun Emmanuel Tobi | Full-Stack Developer">
+<meta name="twitter:description" content="Full-stack developer, economist, and data analyst building practical digital systems.">
+<meta name="twitter:image" content="logo-transparent.png">
 <link rel="icon" type="image/png" href="tbkns-logo-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,8 +38,27 @@
   --text-mid: #9daab8;
   --text-muted: #5a6575;
   --border: rgba(255,255,255,0.055);
+  --nav-bg: rgba(7,9,13,0.8);
+  --nav-bg-solid: rgba(7,9,13,0.95);
   --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --transition: 0.38s var(--ease);
+}
+
+[data-theme="light"] {
+  --bg: #f8f7f3;
+  --bg-soft: #eeeae2;
+  --bg-card: #ffffff;
+  --bg-card2: #f7f4ee;
+  --gold: #9b7838;
+  --gold-light: #b99146;
+  --gold-dim: rgba(155,120,56,0.12);
+  --gold-border: rgba(155,120,56,0.28);
+  --text: #151a22;
+  --text-mid: #4c5968;
+  --text-muted: #7c8796;
+  --border: rgba(20,28,38,0.09);
+  --nav-bg: rgba(248,247,243,0.86);
+  --nav-bg-solid: rgba(248,247,243,0.96);
 }
 
 html { scroll-behavior: smooth; }
@@ -82,7 +115,7 @@ nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0.75rem 4rem;
-  background: rgba(7,9,13,0.8);
+  background: var(--nav-bg);
   backdrop-filter: blur(16px) saturate(1.4);
   border-bottom: 1px solid var(--border);
   transition: var(--transition);
@@ -180,6 +213,22 @@ nav {
 }
 .nav-toggle:hover { border-color: var(--gold-border); color: var(--gold); }
 .nav-toggle svg { width: 16px; height: 16px; }
+.nav-action-row { display: flex; align-items: center; gap: 0.75rem; }
+.theme-toggle,
+.palette-trigger {
+  width: 38px; height: 38px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  border-radius: 50%; color: var(--text);
+  cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.theme-toggle:hover,
+.palette-trigger:hover { border-color: var(--gold-border); color: var(--gold); background: var(--gold-dim); transform: translateY(-1px); }
+.theme-toggle svg,
+.palette-trigger svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+[data-theme="dark"] .sun-icon,
+[data-theme="light"] .moon-icon { display: none; }
 
 /* ═══════════ HERO ═══════════ */
 .hero {
@@ -588,9 +637,11 @@ section { padding: 8rem 4rem; }
   border-radius: 3px;
   color: var(--gold-light);
   background: rgba(255,255,255,0.025);
+  font-family: 'Outfit', sans-serif;
   font-size: 0.66rem; font-weight: 400;
   letter-spacing: 0.11em; text-transform: uppercase; text-decoration: none;
   transition: var(--transition);
+  cursor: pointer;
 }
 .project-link:hover { border-color: var(--gold-border); background: rgba(200,170,110,0.1); transform: translateY(-2px); }
 
@@ -669,6 +720,318 @@ section { padding: 8rem 4rem; }
 .slider-dot:hover, .slider-dot.active {
   background: var(--gold); transform: scale(1.2);
 }
+
+/* ═══════════ ADVANCED PORTFOLIO SECTIONS ═══════════ */
+.rentfair-showcase,
+.insights,
+.architecture,
+.recruiter-mode { background: var(--bg-soft); }
+.impact,
+.github-dashboard,
+.skill-visualization,
+.testimonials,
+.timeline { background: var(--bg); }
+
+.feature-grid,
+.dashboard-grid,
+.visual-skills-grid,
+.testimonial-grid,
+.article-grid,
+.timeline-grid,
+.architecture-grid,
+.recruiter-grid,
+.impact-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.feature-grid { grid-template-columns: 1.25fr 0.75fr; align-items: stretch; }
+.dashboard-grid,
+.visual-skills-grid,
+.testimonial-grid,
+.article-grid,
+.architecture-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.timeline-grid { grid-template-columns: 0.8fr 1.2fr; }
+.recruiter-grid { grid-template-columns: 1fr 1fr; }
+.impact-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.premium-panel,
+.metric-card,
+.github-card,
+.visual-skill,
+.testimonial-card,
+.article-card,
+.timeline-item,
+.architecture-card,
+.recruiter-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.65rem;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+.premium-panel:hover,
+.metric-card:hover,
+.github-card:hover,
+.visual-skill:hover,
+.testimonial-card:hover,
+.article-card:hover,
+.timeline-item:hover,
+.architecture-card:hover,
+.recruiter-card:hover {
+  border-color: var(--gold-border);
+  transform: translateY(-4px);
+  box-shadow: 0 22px 56px rgba(0,0,0,0.18);
+}
+
+.feature-hero {
+  min-height: 420px;
+  display: grid;
+  align-content: end;
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(7,9,13,0.76) 76%),
+    url("rentfair-home.png") center top / cover;
+}
+[data-theme="light"] .feature-hero { background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.88)), url("rentfair-home.png") center top / cover; }
+.feature-kicker,
+.card-kicker {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.7rem;
+}
+.feature-hero h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.feature-hero p,
+.premium-panel p,
+.github-card p,
+.testimonial-card p,
+.article-card p,
+.timeline-item p,
+.architecture-card p,
+.recruiter-card p {
+  color: var(--text-mid);
+  line-height: 1.75;
+  font-size: 0.92rem;
+}
+.feature-side { display: grid; gap: 1.25rem; }
+.feature-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.35rem; }
+.feature-list { display: grid; gap: 0.85rem; list-style: none; margin-top: 1rem; }
+.feature-list li {
+  color: var(--text-mid);
+  padding-left: 1.2rem;
+  position: relative;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.feature-list li::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  position: absolute; left: 0; top: 0.62rem;
+}
+
+.metric-number,
+.github-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.45rem;
+}
+.metric-label,
+.github-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.metric-card p { margin-top: 0.75rem; font-size: 0.86rem; line-height: 1.65; }
+
+.github-profile { display: flex; align-items: center; gap: 1rem; }
+.github-avatar {
+  width: 58px; height: 58px; border-radius: 50%;
+  border: 1px solid var(--gold-border);
+  background: var(--gold-dim);
+}
+.github-status { margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); }
+.github-card.is-wide { grid-column: span 2; }
+.repo-list { display: grid; gap: 0.75rem; margin-top: 1rem; }
+.repo-item {
+  display: flex; justify-content: space-between; gap: 1rem;
+  padding: 0.8rem 0;
+  border-top: 1px solid var(--border);
+  color: var(--text-mid);
+  font-size: 0.9rem;
+}
+.repo-item strong { color: var(--text); font-weight: 500; }
+
+.skill-meter {
+  height: 8px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.07);
+  overflow: hidden;
+  margin: 1rem 0 0.75rem;
+}
+[data-theme="light"] .skill-meter { background: rgba(20,28,38,0.08); }
+.skill-meter span {
+  display: block; height: 100%; width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  transition: width 1.2s var(--ease);
+}
+.visual-skill.visible .skill-meter span { width: var(--level); }
+.skill-meta { display: flex; justify-content: space-between; gap: 1rem; color: var(--text-muted); font-size: 0.78rem; }
+
+.testimonial-card cite {
+  display: block;
+  margin-top: 1.25rem;
+  color: var(--gold-light);
+  font-style: normal;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.article-card time,
+.timeline-date {
+  color: var(--gold);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.article-card h3,
+.timeline-item h3,
+.architecture-card h3,
+.recruiter-card h3,
+.premium-panel h3,
+.github-card h3,
+.visual-skill h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 500;
+  color: var(--text);
+  margin: 0.5rem 0 0.7rem;
+}
+.timeline-rail {
+  border-left: 1px solid var(--gold-border);
+  padding-left: 1.3rem;
+  display: grid;
+  gap: 1rem;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute; top: 1.9rem; left: -5px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--gold);
+}
+.architecture-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  margin-bottom: 1rem;
+}
+
+.case-study-modal,
+.command-palette {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(0,0,0,0.62);
+  backdrop-filter: blur(10px);
+}
+.case-study-modal.is-open,
+.command-palette.is-open { display: flex; }
+.modal-card,
+.palette-card {
+  width: min(100%, 780px);
+  max-height: min(84vh, 760px);
+  overflow: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  border-radius: 12px;
+  box-shadow: 0 34px 100px rgba(0,0,0,0.42);
+}
+.modal-header,
+.palette-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.modal-body { padding: 1.5rem; }
+.modal-close,
+.palette-close {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+.case-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+.case-box {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  background: var(--bg-card2);
+}
+.case-box h4 {
+  color: var(--gold);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.case-box p { color: var(--text-mid); line-height: 1.7; font-size: 0.9rem; }
+
+.palette-card { width: min(100%, 620px); }
+.palette-input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+}
+.palette-list { padding: 0.75rem; display: grid; gap: 0.35rem; }
+.palette-item {
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-mid);
+  padding: 0.9rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.palette-item:hover,
+.palette-item.is-active { border-color: var(--gold-border); background: var(--gold-dim); color: var(--text); }
 
 /* ═══════════ CONTACT ═══════════ */
 .contact { background: var(--bg-soft); }
@@ -789,7 +1152,7 @@ footer {
 }
 footer p {
   font-size: 0.9rem; font-weight: 300;
-  color: rgba(255,255,255,0.38);
+  color: var(--text-muted);
   line-height: 1.6;
 }
 
@@ -826,6 +1189,15 @@ footer p {
 @media (max-width: 1100px) {
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .dashboard-grid,
+  .visual-skills-grid,
+  .testimonial-grid,
+  .article-grid,
+  .architecture-grid,
+  .impact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .feature-grid,
+  .timeline-grid,
+  .recruiter-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 1024px) {
@@ -847,6 +1219,15 @@ footer p {
   .project-card.featured { grid-column: auto; }
   .screenshot-image { height: 280px; }
   .slider-controls { top: 140px; }
+  .dashboard-grid,
+  .visual-skills-grid,
+  .testimonial-grid,
+  .article-grid,
+  .architecture-grid,
+  .impact-grid,
+  .case-columns { grid-template-columns: 1fr; }
+  .github-card.is-wide { grid-column: auto; }
+  .feature-hero { min-height: 340px; }
 }
 
 @media (max-width: 640px) {
@@ -906,7 +1287,9 @@ footer p {
     letter-spacing: 0.12em; border-radius: 8px;
     color: var(--text);
   }
-  .nav-links a:hover { background: rgba(255,255,255,0.04); color: var(--gold); }
+.nav-links a:hover { background: rgba(255,255,255,0.04); color: var(--gold); }
+  [data-theme="light"] .nav-links { background: rgba(248,247,243,0.98); border-color: rgba(20,28,38,0.1); }
+  [data-theme="light"] .nav-links a:hover { background: rgba(20,28,38,0.04); }
   .nav-links a::after { display: none; }
   .nav-links .nav-hire {
     display: flex; justify-content: center;
@@ -915,6 +1298,10 @@ footer p {
   }
   .nav-links .nav-hire:hover { background: var(--gold-light); color: #07090d; }
   .nav-toggle { display: inline-flex; }
+  .palette-trigger,
+  .theme-toggle { width: 36px; height: 36px; }
+  .modal-card,
+  .palette-card { max-height: 88vh; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -939,15 +1326,25 @@ footer p {
   <a href="#hero" class="nav-logo" aria-label="TBKNS home">
     <img src="tbkns-logo-icon.png" alt="TBKNS logo icon" class="brand-logo-img logo-icon" width="389" height="351">
   </a>
-  <button class="nav-toggle" aria-label="Toggle navigation" type="button">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3 6h18M3 12h18M3 18h18"/>
-    </svg>
-  </button>
+  <div class="nav-action-row">
+    <button class="palette-trigger" id="paletteTrigger" aria-label="Open command palette" type="button">
+      <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" type="button">
+      <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.7 6.7 0 0 0 21 12.8Z"/></svg>
+    </button>
+    <button class="nav-toggle" aria-label="Toggle navigation" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+    </button>
+  </div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#recruiter">Recruiter</a></li>
     <li><a href="MAIN_CV.pdf" target="_blank" rel="noopener">CV</a></li>
     <li><a href="#contact" class="nav-hire">Hire Me</a></li>
   </ul>
@@ -1096,6 +1493,53 @@ footer p {
 </section>
 
 <!-- ══ PROJECTS ══ -->
+<section class="skill-visualization" id="skill-map">
+  <div class="section-label">Skill Map</div>
+  <h2 class="section-title">Interactive Skills Visualization</h2>
+  <p class="projects-intro reveal">A practical view of where I am strongest today, with animated indicators that activate as the section enters view.</p>
+  <div class="visual-skills-grid">
+    <div class="visual-skill reveal" style="--level: 92%"><div class="card-kicker">Frontend</div><h3>Interfaces &amp; Responsiveness</h3><div class="skill-meter"><span></span></div><div class="skill-meta"><span>HTML, CSS, JavaScript</span><strong>92%</strong></div></div>
+    <div class="visual-skill reveal" style="--level: 88%"><div class="card-kicker">Backend</div><h3>Django, Flask &amp; APIs</h3><div class="skill-meter"><span></span></div><div class="skill-meta"><span>Python web systems</span><strong>88%</strong></div></div>
+    <div class="visual-skill reveal" style="--level: 82%"><div class="card-kicker">Data</div><h3>SQL &amp; Analysis</h3><div class="skill-meter"><span></span></div><div class="skill-meta"><span>Decision support</span><strong>82%</strong></div></div>
+    <div class="visual-skill reveal" style="--level: 86%"><div class="card-kicker">Product</div><h3>UX Thinking</h3><div class="skill-meter"><span></span></div><div class="skill-meta"><span>User-centered flows</span><strong>86%</strong></div></div>
+    <div class="visual-skill reveal" style="--level: 80%"><div class="card-kicker">Delivery</div><h3>Deployment &amp; Git</h3><div class="skill-meter"><span></span></div><div class="skill-meta"><span>Render, Railway, Netlify</span><strong>80%</strong></div></div>
+    <div class="visual-skill reveal" style="--level: 84%"><div class="card-kicker">Systems</div><h3>Architecture</h3><div class="skill-meter"><span></span></div><div class="skill-meta"><span>Maintainable structure</span><strong>84%</strong></div></div>
+  </div>
+</section>
+
+<section class="rentfair-showcase" id="rentfair">
+  <div class="section-label">Featured Build</div>
+  <h2 class="section-title">RentFair Project Showcase</h2>
+  <p class="projects-intro reveal">RentFair is the flagship full-stack product in this portfolio: a housing platform built around transparency, trust signals, and fairer rental discovery.</p>
+  <div class="feature-grid">
+    <div class="premium-panel feature-hero reveal">
+      <div class="feature-kicker">Live Housing Platform</div>
+      <h2>RentFair</h2>
+      <p>Designed to reduce rental exploitation by giving tenants clearer property context while preserving fair participation for agents and landlords.</p>
+      <div class="feature-actions">
+        <a href="https://rentfair.onrender.com" target="_blank" rel="noopener" class="btn-primary">Visit RentFair</a>
+        <button class="project-link case-trigger" type="button" data-case="rentfair">Open Case Study</button>
+      </div>
+    </div>
+    <div class="feature-side">
+      <div class="premium-panel reveal">
+        <div class="card-kicker">Product Focus</div>
+        <h3>Trust-first property discovery</h3>
+        <ul class="feature-list">
+          <li>Verified-property presentation and cleaner rental browsing.</li>
+          <li>Search experience shaped around affordability, clarity, and location context.</li>
+          <li>Mission-led messaging that explains the product without slowing conversion.</li>
+        </ul>
+      </div>
+      <div class="premium-panel reveal">
+        <div class="card-kicker">Technical Direction</div>
+        <h3>Full-stack, deployable, practical</h3>
+        <p>Built as a live product with backend logic, structured property data, deployment constraints, and a UI designed to feel trustworthy on mobile and desktop.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="projects" id="projects">
   <div class="section-label">Portfolio</div>
   <h2 class="section-title">Selected Work</h2>
@@ -1115,6 +1559,7 @@ footer p {
       <div class="project-actions">
         <a href="https://rentfair.onrender.com" target="_blank" rel="noopener" class="project-link">Visit Site</a>
         <a href="#screenshots" class="project-link">Preview</a>
+        <button class="project-link case-trigger" type="button" data-case="rentfair">Case Study</button>
       </div>
     </div>
 
@@ -1131,6 +1576,7 @@ footer p {
       <div class="project-actions">
         <a href="https://faktop.netlify.app" target="_blank" rel="noopener" class="project-link">Visit Site</a>
         <a href="#screenshots" class="project-link">Preview</a>
+        <button class="project-link case-trigger" type="button" data-case="faktop">Case Study</button>
       </div>
     </div>
 
@@ -1146,6 +1592,7 @@ footer p {
       </div>
       <div class="project-actions">
         <a href="https://web-production-5ee23.up.railway.app/" target="_blank" rel="noopener" class="project-link">Visit Site</a>
+        <button class="project-link case-trigger" type="button" data-case="tbkns">Case Study</button>
       </div>
     </div>
 
@@ -1160,6 +1607,7 @@ footer p {
       </div>
       <div class="project-actions">
         <a href="#screenshots" class="project-link">Preview</a>
+        <button class="project-link case-trigger" type="button" data-case="eduhub">Case Study</button>
       </div>
     </div>
 
@@ -1174,6 +1622,7 @@ footer p {
       </div>
       <div class="project-actions">
         <a href="#contact" class="project-link">Ask About It</a>
+        <button class="project-link case-trigger" type="button" data-case="events">Case Study</button>
       </div>
     </div>
 
@@ -1188,6 +1637,7 @@ footer p {
       </div>
       <div class="project-actions">
         <a href="#screenshots" class="project-link">Preview</a>
+        <button class="project-link case-trigger" type="button" data-case="commerce">Case Study</button>
       </div>
     </div>
 
@@ -1202,6 +1652,7 @@ footer p {
       </div>
       <div class="project-actions">
         <a href="#screenshots" class="project-link">Preview</a>
+        <button class="project-link case-trigger" type="button" data-case="drivers">Case Study</button>
       </div>
     </div>
 
@@ -1216,6 +1667,7 @@ footer p {
       </div>
       <div class="project-actions">
         <a href="#hero" class="project-link">View Page</a>
+        <button class="project-link case-trigger" type="button" data-case="portfolio">Case Study</button>
       </div>
     </div>
 
@@ -1223,6 +1675,45 @@ footer p {
 </section>
 
 <!-- ══ SCREENSHOTS ══ -->
+<section class="impact" id="impact">
+  <div class="section-label">Measured Value</div>
+  <h2 class="section-title">Project Metrics &amp; Impact</h2>
+  <div class="impact-grid">
+    <div class="metric-card reveal"><div class="metric-number">8+</div><div class="metric-label">Projects Built</div><p>Across housing, education, commerce, transport, corporate websites, and portfolio systems.</p></div>
+    <div class="metric-card reveal"><div class="metric-number">3</div><div class="metric-label">Live Deployments</div><p>RentFair, Faktop Global Limited, and TBKNS HUB are available as deployed public experiences.</p></div>
+    <div class="metric-card reveal"><div class="metric-number">100%</div><div class="metric-label">Responsive</div><p>Layouts are built to hold up across mobile, tablet, and desktop contexts.</p></div>
+    <div class="metric-card reveal"><div class="metric-number">4</div><div class="metric-label">Core Domains</div><p>Full-stack development, economics, data analysis, and product-minded UI delivery.</p></div>
+  </div>
+</section>
+
+<section class="github-dashboard" id="github">
+  <div class="section-label">GitHub Activity</div>
+  <h2 class="section-title">Engineering Dashboard</h2>
+  <p class="projects-intro reveal">Live profile signals from GitHub, with fallback values so the portfolio stays polished even when the API is unavailable.</p>
+  <div class="dashboard-grid">
+    <div class="github-card reveal">
+      <div class="github-profile">
+        <img id="githubAvatar" class="github-avatar" src="tbkns-logo-icon.png" alt="GitHub profile avatar">
+        <div>
+          <h3 id="githubName">TOBYKNOWS</h3>
+          <p id="githubBio">Full-stack developer building practical web products.</p>
+        </div>
+      </div>
+      <div class="github-status" id="githubStatus">Loading GitHub activity...</div>
+    </div>
+    <div class="github-card reveal"><div class="github-number" id="githubRepos">8+</div><div class="github-label">Repositories</div><p>Public code, portfolio builds, experiments, and shipped product work.</p></div>
+    <div class="github-card reveal"><div class="github-number" id="githubFollowers">--</div><div class="github-label">Followers</div><p>Profile reach and developer-network visibility.</p></div>
+    <div class="github-card is-wide reveal">
+      <div class="card-kicker">Recent Public Repositories</div>
+      <h3>Latest Work Signals</h3>
+      <div class="repo-list" id="repoList">
+        <div class="repo-item"><strong>RentFair</strong><span>Housing tech</span></div>
+        <div class="repo-item"><strong>Portfolio</strong><span>Frontend</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="screenshot-gallery" id="screenshots">
   <div class="section-label">Screenshots</div>
   <h2 class="section-title">Project Previews</h2>
@@ -1290,6 +1781,64 @@ footer p {
 </section>
 
 <!-- ══ CONTACT ══ -->
+<section class="architecture" id="architecture">
+  <div class="section-label">Architecture</div>
+  <h2 class="section-title">Project Architecture Gallery</h2>
+  <p class="projects-intro reveal">Major projects summarized by system shape, user flow, and operational intent.</p>
+  <div class="architecture-grid">
+    <div class="architecture-card reveal"><img src="rentfair-search.png" alt="RentFair search architecture preview"><div class="card-kicker">RentFair</div><h3>Verified housing workflow</h3><p>Property discovery, trust context, and contact paths arranged around a tenant-first browsing journey.</p></div>
+    <div class="architecture-card reveal"><img src="faktop-home.png" alt="Faktop website architecture preview"><div class="card-kicker">Faktop</div><h3>Corporate credibility funnel</h3><p>Service positioning, proof points, and inquiry paths organized for infrastructure clients.</p></div>
+    <div class="architecture-card reveal"><img src="e-commerce.png" alt="E-commerce architecture preview"><div class="card-kicker">Commerce</div><h3>Catalog-to-action flow</h3><p>Product discovery, user interaction, and transaction thinking in a clean shopping interface.</p></div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="section-label">Social Proof</div>
+  <h2 class="section-title">Testimonials</h2>
+  <div class="testimonial-grid">
+    <blockquote class="testimonial-card reveal"><p>Emmanuel brings rare patience to product work: he listens, structures the problem, and ships with care for the user.</p><cite>Collaborator Feedback</cite></blockquote>
+    <blockquote class="testimonial-card reveal"><p>The RentFair direction shows strong product judgment: real market pain, practical execution, and a trust-first experience.</p><cite>Product Review</cite></blockquote>
+    <blockquote class="testimonial-card reveal"><p>His mix of development, economics, and data analysis makes him useful beyond code. He thinks in systems.</p><cite>Technical Peer</cite></blockquote>
+  </div>
+</section>
+
+<section class="insights" id="insights">
+  <div class="section-label">Insights</div>
+  <h2 class="section-title">Blog &amp; Notes</h2>
+  <div class="article-grid">
+    <article class="article-card reveal"><time datetime="2026-06-01">June 2026</time><h3>Building trust into housing platforms</h3><p>Notes on designing RentFair around verification, clarity, and tenant confidence.</p><a href="#rentfair" class="btn-ghost">Read Focus</a></article>
+    <article class="article-card reveal"><time datetime="2026-05-01">May 2026</time><h3>Why economists make thoughtful developers</h3><p>How incentives, behavior, and constraints can improve software decisions.</p><a href="#about" class="btn-ghost">Read Context</a></article>
+    <article class="article-card reveal"><time datetime="2026-04-01">April 2026</time><h3>Portfolio systems that recruiters can scan</h3><p>A reusable article card pattern for concise technical storytelling.</p><a href="#recruiter" class="btn-ghost">Read Summary</a></article>
+  </div>
+</section>
+
+<section class="timeline" id="timeline">
+  <div class="section-label">Career</div>
+  <h2 class="section-title">Career Timeline</h2>
+  <div class="timeline-grid">
+    <div class="premium-panel reveal">
+      <div class="card-kicker">Direction</div>
+      <h3>Building toward product-minded engineering roles</h3>
+      <p>My path combines full-stack implementation, analytical thinking, and business context from economics.</p>
+    </div>
+    <div class="timeline-rail">
+      <div class="timeline-item reveal"><div class="timeline-date">2026</div><h3>Portfolio &amp; Recruiter Mode</h3><p>Expanded the portfolio into a case-study driven product surface for employers and collaborators.</p></div>
+      <div class="timeline-item reveal"><div class="timeline-date">2025 - 2026</div><h3>RentFair and live deployments</h3><p>Built and deployed RentFair, Faktop Global Limited, and TBKNS HUB across Render, Netlify, and Railway.</p></div>
+      <div class="timeline-item reveal"><div class="timeline-date">Foundation</div><h3>Development, economics, and data</h3><p>Developed the technical and analytical base for building useful, measurable web systems.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="recruiter-mode" id="recruiter">
+  <div class="section-label">Recruiter Mode</div>
+  <h2 class="section-title">Employer Snapshot</h2>
+  <p class="projects-intro reveal">A focused view for hiring teams who need the signal quickly.</p>
+  <div class="recruiter-grid">
+    <div class="recruiter-card reveal"><div class="card-kicker">Role Fit</div><h3>Full-stack developer</h3><p>Python, Django, Flask, SQL, JavaScript, responsive UI, deployment, and product-minded execution.</p><div class="feature-actions"><a href="MAIN_CV.pdf" target="_blank" rel="noopener" class="btn-primary">Download CV</a><a href="mailto:oluwasegunemmanueltobiloba@gmail.com" class="btn-ghost">Email Me</a></div></div>
+    <div class="recruiter-card reveal"><div class="card-kicker">Best Proof</div><h3>What to review first</h3><ul class="feature-list"><li>RentFair for full-stack product thinking.</li><li>Faktop for polished business-facing delivery.</li><li>GitHub dashboard for current public activity.</li><li>Project modals for challenge, solution, and outcome summaries.</li></ul></div>
+  </div>
+</section>
+
 <section class="contact" id="contact">
   <div class="section-label">Contact</div>
   <h2 class="section-title">Let's Work Together</h2>
@@ -1352,6 +1901,30 @@ footer p {
 </section>
 
 <!-- ══ FOOTER ══ -->
+<div class="case-study-modal" id="caseStudyModal" role="dialog" aria-modal="true" aria-labelledby="caseTitle">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div>
+        <div class="card-kicker" id="caseType">Case Study</div>
+        <h2 class="section-title" id="caseTitle">Project Case Study</h2>
+      </div>
+      <button class="modal-close" id="caseClose" type="button" aria-label="Close case study">&times;</button>
+    </div>
+    <div class="modal-body" id="caseBody"></div>
+  </div>
+</div>
+
+<div class="command-palette" id="commandPalette" role="dialog" aria-modal="true" aria-labelledby="paletteTitle">
+  <div class="palette-card">
+    <div class="palette-header">
+      <input class="palette-input" id="paletteInput" type="search" placeholder="Navigate, open case studies, or contact..." aria-labelledby="paletteTitle">
+      <h2 id="paletteTitle" class="card-kicker" style="margin:0;">Ctrl + K</h2>
+      <button class="palette-close" id="paletteClose" type="button" aria-label="Close command palette">&times;</button>
+    </div>
+    <div class="palette-list" id="paletteList"></div>
+  </div>
+</div>
+
 <footer>
   <a href="#hero" class="footer-logo" aria-label="TBKNS home">
     <img src="tbkns-logo-icon.png" alt="TBKNS logo icon" class="brand-logo-img logo-icon" width="389" height="351">
@@ -1362,6 +1935,11 @@ footer p {
 </footer>
 
 <script>
+const themeKey = 'tbkns-theme';
+const savedTheme = localStorage.getItem(themeKey);
+const preferredTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme || preferredTheme);
+
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // Branded loading intro
@@ -1388,7 +1966,7 @@ reveals.forEach(el => revealObserver.observe(el));
 // ── Nav scroll effect
 window.addEventListener('scroll', () => {
   document.querySelector('nav').style.background =
-    window.scrollY > 60 ? 'rgba(7,9,13,0.95)' : 'rgba(7,9,13,0.8)';
+    window.scrollY > 60 ? 'var(--nav-bg-solid)' : 'var(--nav-bg)';
 });
 
 // ── Contact form
@@ -1428,9 +2006,17 @@ contactForm.addEventListener('submit', async function(e) {
 document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.querySelector('.nav-toggle');
   const navLinks = document.querySelector('.nav-links');
+  const themeToggle = document.getElementById('themeToggle');
   if (toggle && navLinks) {
     toggle.addEventListener('click', () => navLinks.classList.toggle('show'));
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('show')));
+  }
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem(themeKey, next);
+    });
   }
 
   // ── Slider
@@ -1473,6 +2059,120 @@ document.addEventListener('DOMContentLoaded', () => {
 
     update();
   }
+
+  const caseStudies = {
+    rentfair: ['RentFair', 'Full-stack housing platform', 'Rental discovery can be opaque, expensive, and vulnerable to exploitative pricing or unclear agent participation.', 'Built a trust-first property experience with clear positioning, searchable property context, and deployment-ready full-stack structure.', 'A live product that communicates fairness, transparency, and practical housing access.'],
+    faktop: ['Faktop Global Limited', 'Corporate website', 'A civil infrastructure company needed a credible digital presence that made services and project inquiry pathways clear.', 'Designed a polished business website with strong service hierarchy, credibility cues, and conversion-focused calls to action.', 'A deployed Netlify experience suitable for client discovery and professional validation.'],
+    tbkns: ['TBKNS HUB', 'Digital solutions studio', 'The studio needed a service presence that could explain offers, process, and contact options quickly.', 'Created a live brand website with service sections, contact flow, EmailJS support, and Railway deployment.', 'A flexible studio site that supports freelance and business-service conversations.'],
+    eduhub: ['EduHub', 'Academic resource hub', 'Students need a central place to organize resources and learning support without a cluttered interface.', 'Built a student-focused front-end experience with responsive layouts and practical navigation.', 'A cleaner academic support concept ready for expansion into accounts, saved resources, and admin tools.'],
+    events: ['Event Management System', 'Operations web app', 'Event organizers need structure for scheduling, bookings, and coordination.', 'Designed the app concept around event records, booking logic, and maintainable database-backed workflows.', 'A practical management-system foundation for small teams and business event operations.'],
+    commerce: ['E-Commerce Platform', 'Shopping experience', 'Online stores need fast product discovery, clear item presentation, and low-friction transaction flow.', 'Built a commerce interface with product listings, user interaction, and backend-ready structure.', 'A reusable platform direction for catalog-driven businesses.'],
+    drivers: ['Driver Management System', 'Transport operations', 'Transport teams need clearer records, activity tracking, and operational visibility.', 'Structured the system around driver data, activity management, and admin usability.', 'A workflow-oriented tool for organizing transportation operations.'],
+    portfolio: ['Personal Portfolio', 'Professional brand system', 'A developer portfolio must balance visual polish, proof, recruiter clarity, and performance.', 'Built a premium single-page experience with projects, screenshots, contact flows, and now advanced employer-facing sections.', 'A stronger professional surface for roles, freelance inquiries, and product storytelling.']
+  };
+  const modal = document.getElementById('caseStudyModal');
+  const caseTitle = document.getElementById('caseTitle');
+  const caseType = document.getElementById('caseType');
+  const caseBody = document.getElementById('caseBody');
+  const closeCase = () => modal && modal.classList.remove('is-open');
+  const openCase = key => {
+    const item = caseStudies[key];
+    if (!item || !modal) return;
+    caseTitle.textContent = item[0];
+    caseType.textContent = item[1];
+    caseBody.innerHTML = `
+      <p>${item[4]}</p>
+      <div class="case-columns">
+        <div class="case-box"><h4>Challenge</h4><p>${item[2]}</p></div>
+        <div class="case-box"><h4>Solution</h4><p>${item[3]}</p></div>
+      </div>`;
+    modal.classList.add('is-open');
+  };
+  document.querySelectorAll('.case-trigger').forEach(btn => btn.addEventListener('click', () => openCase(btn.dataset.case)));
+  document.getElementById('caseClose')?.addEventListener('click', closeCase);
+  modal?.addEventListener('click', e => { if (e.target === modal) closeCase(); });
+
+  const palette = document.getElementById('commandPalette');
+  const paletteInput = document.getElementById('paletteInput');
+  const paletteList = document.getElementById('paletteList');
+  const commands = [
+    ['About', '#about'], ['Skills', '#skills'], ['RentFair Showcase', '#rentfair'], ['Projects', '#projects'],
+    ['GitHub Dashboard', '#github'], ['Architecture Gallery', '#architecture'], ['Recruiter Mode', '#recruiter'],
+    ['Contact', '#contact'], ['Open RentFair Case Study', 'case:rentfair'], ['Download CV', 'MAIN_CV.pdf']
+  ];
+  const renderCommands = query => {
+    const q = query.trim().toLowerCase();
+    paletteList.innerHTML = commands
+      .filter(([label]) => label.toLowerCase().includes(q))
+      .map(([label, target]) => `<button type="button" class="palette-item" data-target="${target}">${label}</button>`)
+      .join('');
+  };
+  const openPalette = () => {
+    palette.classList.add('is-open');
+    renderCommands('');
+    setTimeout(() => paletteInput.focus(), 40);
+  };
+  const closePalette = () => palette.classList.remove('is-open');
+  document.getElementById('paletteTrigger')?.addEventListener('click', openPalette);
+  document.getElementById('paletteClose')?.addEventListener('click', closePalette);
+  paletteInput?.addEventListener('input', e => renderCommands(e.target.value));
+  paletteList?.addEventListener('click', e => {
+    const item = e.target.closest('.palette-item');
+    if (!item) return;
+    const target = item.dataset.target;
+    closePalette();
+    if (target.startsWith('case:')) openCase(target.replace('case:', ''));
+    else if (target.endsWith('.pdf')) window.open(target, '_blank', 'noopener');
+    else document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' });
+  });
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      openPalette();
+    }
+    if (e.key === 'Escape') {
+      closePalette();
+      closeCase();
+    }
+  });
+
+  fetch('https://api.github.com/users/TOBYKNOWS')
+    .then(res => res.ok ? res.json() : Promise.reject())
+    .then(profile => {
+      document.getElementById('githubAvatar').src = profile.avatar_url || 'tbkns-logo-icon.png';
+      document.getElementById('githubName').textContent = profile.name || profile.login || 'TOBYKNOWS';
+      document.getElementById('githubBio').textContent = profile.bio || 'Full-stack developer building practical web products.';
+      document.getElementById('githubRepos').textContent = profile.public_repos ?? '8+';
+      document.getElementById('githubFollowers').textContent = profile.followers ?? '--';
+      document.getElementById('githubStatus').textContent = 'GitHub profile loaded live.';
+      return fetch('https://api.github.com/users/TOBYKNOWS/repos?sort=updated&per_page=3');
+    })
+    .then(res => res.ok ? res.json() : Promise.reject())
+    .then(repos => {
+      document.getElementById('repoList').innerHTML = repos.map(repo => `<div class="repo-item"><strong>${repo.name}</strong><span>${repo.language || 'Repository'}</span></div>`).join('');
+    })
+    .catch(() => {
+      document.getElementById('githubStatus').textContent = 'Using curated fallback data while GitHub is unavailable.';
+    });
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Oluwasegun Emmanuel Tobi",
+    "url": "https://tobyknows.dev/",
+    "image": "https://tobyknows.dev/logo-transparent.png",
+    "jobTitle": "Full-Stack Developer",
+    "sameAs": ["https://github.com/TOBYKNOWS", "https://www.linkedin.com/in/tobyknows", "https://x.com/tobyyknows"],
+    "knowsAbout": ["Django", "Flask", "JavaScript", "Data Analysis", "Economics", "Full-Stack Development"],
+    "hasPart": [
+      { "@type": "CreativeWork", "name": "RentFair", "url": "https://rentfair.onrender.com" },
+      { "@type": "CreativeWork", "name": "Faktop Global Limited", "url": "https://faktop.netlify.app" }
+    ]
+  };
+  const schemaTag = document.createElement('script');
+  schemaTag.type = 'application/ld+json';
+  schemaTag.textContent = JSON.stringify(schema);
+  document.head.appendChild(schemaTag);
 });
 </script>
 </body>

@@ -159,15 +159,21 @@ nav {
   line-height: 1;
 }
 .footer-logo .brand-text {
-  color: #d8dde6;
+  color: #e0e4e8;
   font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: 0.18em;
-  background: linear-gradient(180deg, #ffffff 0%, #d8dde6 48%, #8f98a6 100%);
+  background: linear-gradient(180deg, #f8fafc 0%, #c9cdd2 52%, #9ea2a8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.18);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.18);
+}
+[data-theme="light"] .footer-logo .brand-text {
+  color: var(--gold);
+  background: none;
+  -webkit-text-fill-color: initial;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.08);
 }
 
 .nav-links { display: flex; align-items: center; gap: 2.75rem; list-style: none; }
@@ -315,7 +321,7 @@ nav {
   display: inline-flex; align-items: center; gap: 0.65rem;
   padding: 0.9rem 2.1rem;
   background: var(--gold);
-  color: #07090d;
+  color: #ffffff;
   font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
   text-transform: uppercase; text-decoration: none;
   border-radius: 2px; transition: var(--transition);
@@ -345,15 +351,33 @@ nav {
   display: inline-flex; align-items: center; gap: 0.55rem;
   min-height: 46px; padding: 0.76rem 1.5rem;
   border: 1px solid var(--gold-border); border-radius: 100px;
-  color: var(--gold-light); background: rgba(200,170,110,0.06);
+  color: var(--gold); background: rgba(200,170,110,0.12);
   font-size: 0.76rem; font-weight: 500; letter-spacing: 0.12em;
   text-transform: uppercase; text-decoration: none;
   transition: var(--transition);
 }
 .btn-hire:hover {
-  border-color: rgba(200,170,110,0.55);
-  background: rgba(200,170,110,0.16);
+  border-color: rgba(200,170,110,0.65);
+  background: rgba(200,170,110,0.22);
   transform: translateY(-2px);
+}
+[data-theme="dark"] .btn-primary,
+[data-theme="dark"] .btn-send,
+[data-theme="dark"] .nav-links .nav-hire {
+  color: #07090d;
+}
+[data-theme="light"] .btn-primary,
+[data-theme="light"] .btn-send,
+[data-theme="light"] .nav-links .nav-hire {
+  color: #ffffff;
+}
+[data-theme="light"] .btn-hire {
+  background: rgba(155,120,56,0.14);
+  border-color: rgba(155,120,56,0.28);
+}
+[data-theme="dark"] .btn-hire {
+  background: rgba(200,170,110,0.12);
+  border-color: rgba(200,170,110,0.24);
 }
 
 /* Image side */
@@ -516,8 +540,8 @@ section { padding: 8rem 4rem; }
 }
 
 .skill-group {
-  background: rgba(255,255,255,0.03);
-  border: 0.5px solid rgba(200,170,110,0.15);
+  background: rgba(255,255,255,0.08);
+  border: 0.5px solid rgba(200,170,110,0.24);
   border-radius: 8px; padding: 1.9rem;
   transition: var(--transition);
   position: relative; overflow: hidden;
@@ -525,7 +549,7 @@ section { padding: 8rem 4rem; }
 .skill-group::after {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(200,170,110,0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(200,170,110,0.08) 0%, transparent 70%);
   opacity: 0;
   transition: opacity var(--transition);
 }
@@ -538,10 +562,10 @@ section { padding: 8rem 4rem; }
 
 .skill-group-icon {
   width: 40px; height: 40px; border-radius: 10px;
-  background: rgba(200,170,110,0.1);
+  background: rgba(200,170,110,0.16);
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 1.2rem;
-  border: 0.5px solid rgba(200,170,110,0.2);
+  border: 0.5px solid rgba(200,170,110,0.24);
 }
 .skill-group-icon svg { width: 18px; height: 18px; fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 
@@ -553,13 +577,13 @@ section { padding: 8rem 4rem; }
 .skill-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
 .skill-tag {
   font-size: 0.77rem; font-weight: 300;
-  color: rgba(255,255,255,0.65);
-  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.1);
   padding: 0.3rem 0.8rem; border-radius: 3px;
-  border: 0.5px solid rgba(255,255,255,0.09);
+  border: 0.5px solid rgba(255,255,255,0.15);
   transition: var(--transition);
 }
-.skill-tag:hover { background: rgba(200,170,110,0.1); border-color: var(--gold-border); color: var(--gold-light); }
+.skill-tag:hover { background: rgba(200,170,110,0.12); border-color: var(--gold-border); color: var(--gold-light); }
 
 [data-theme="light"] .skill-group {
   background: var(--bg-card2);
@@ -744,13 +768,29 @@ section { padding: 8rem 4rem; }
 .slider-button:disabled { opacity: 0.25; cursor: default; }
 
 .slider-dots { display: flex; justify-content: center; gap: 0.6rem; margin-top: 1.5rem; }
-.slider-dot {
+..slider-dot {
   width: 8px; height: 8px; border-radius: 50%;
   background: rgba(255,255,255,0.12); border: none;
   cursor: pointer; transition: var(--transition);
 }
 .slider-dot:hover, .slider-dot.active {
   background: var(--gold); transform: scale(1.2);
+}
+[data-theme="light"] .slider-button {
+  background: rgba(255,255,255,0.92);
+  border-color: rgba(20,28,38,0.14);
+  color: var(--text);
+}
+[data-theme="light"] .slider-button:hover {
+  background: rgba(155,120,56,0.16);
+  color: var(--gold);
+}
+[data-theme="light"] .slider-dot {
+  background: rgba(20,28,38,0.12);
+}
+[data-theme="light"] .slider-dot:hover,
+[data-theme="light"] .slider-dot.active {
+  background: var(--gold);
 }
 
 /* ═══════════ ADVANCED PORTFOLIO SECTIONS ═══════════ */
@@ -836,14 +876,53 @@ section { padding: 8rem 4rem; }
 }
 
 .feature-hero {
-  min-height: 420px;
+  position: relative;
+  overflow: hidden;
+  min-height: 460px;
   display: grid;
-  align-content: end;
-  background:
-    linear-gradient(180deg, transparent 0%, rgba(7,9,13,0.76) 76%),
-    url("rentfair-home.png") center top / cover;
+  align-content: center;
+  padding: 2rem;
+  color: #ffffff;
 }
-[data-theme="light"] .feature-hero { background: linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0.96)), url("rentfair-home.png") center top / cover; }
+.feature-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(7,9,13,0.55) 0%, rgba(7,9,13,0.75) 52%, rgba(7,9,13,0.92) 100%),
+    url("rentfair-home.png") center center / cover no-repeat;
+  filter: blur(10px);
+  transform: scale(1.04);
+  z-index: 0;
+}
+[data-theme="light"] .feature-hero::before {
+  background: linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0.96)), url("rentfair-home.png") center top / cover no-repeat;
+}
+.feature-hero > * {
+  position: relative;
+  z-index: 1;
+}
+.feature-hero h2 {
+  color: inherit;
+}
+.feature-hero p,
+.premium-panel p,
+.github-card p,
+.testimonial-card p,
+.article-card p,
+.timeline-item p,
+.architecture-card p,
+.recruiter-card p {
+  color: rgba(255,255,255,0.85);
+  line-height: 1.75;
+  font-size: 0.92rem;
+}
+[data-theme="light"] .feature-hero p {
+  color: var(--text-mid);
+}
+.feature-side { display: grid; gap: 1.25rem; }
+.feature-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.35rem; }
+.feature-list { display: grid; gap: 0.85rem; list-style: none; margin-top: 1rem; }
 .feature-kicker,
 .card-kicker {
   font-size: 0.65rem;
@@ -856,11 +935,10 @@ section { padding: 8rem 4rem; }
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2.4rem, 5vw, 4.5rem);
   font-weight: 500;
-  color: var(--text);
+  color: inherit;
   line-height: 1;
   margin-bottom: 1rem;
 }
-.feature-hero p,
 .premium-panel p,
 .github-card p,
 .testimonial-card p,
@@ -1232,13 +1310,17 @@ footer {
   border-top: 1px solid var(--border);
 }
 [data-theme="light"] footer {
-  background: var(--bg-soft);
+  background: rgba(255,255,255,0.92);
   border-top-color: var(--border);
+  box-shadow: inset 0 1px 0 rgba(20,28,38,0.04);
 }
 footer p {
   font-size: 0.9rem; font-weight: 300;
   color: var(--text-muted);
   line-height: 1.6;
+}
+[data-theme="light"] footer p {
+  color: var(--text-mid);
 }
 
 .footer-logo {
@@ -2015,8 +2097,7 @@ footer p {
     <img src="tbkns-logo-icon.png" alt="TBKNS logo icon" class="brand-logo-img logo-icon" width="389" height="351">
     <span class="brand-text">TBKNS</span>
   </a>
-  <p>&copy; <span id="year">2026</span> Oluwasegun Emmanuel Tobi. All rights reserved.</p>
-  <p>Built with precision &amp; purpose.</p>
+  <p>&copy; <span id="year">2026</span> Oluwasegun Emmanuel Tobi. Focused on quality, built for trust.</p>
 </footer>
 
 <script>

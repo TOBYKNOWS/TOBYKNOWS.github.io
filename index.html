@@ -920,6 +920,9 @@ section { padding: 8rem 4rem; }
 [data-theme="light"] .feature-hero p {
   color: var(--text-mid);
 }
+[data-theme="light"] .feature-hero h2 {
+  color: var(--gold);
+}
 .feature-side { display: grid; gap: 1.25rem; }
 .feature-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.35rem; }
 .feature-list { display: grid; gap: 0.85rem; list-style: none; margin-top: 1rem; }
@@ -1305,29 +1308,115 @@ section { padding: 8rem 4rem; }
 /* ═══════════ FOOTER ═══════════ */
 footer {
   background: #04060a;
-  padding: 2.35rem 4rem;
-  display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+  padding: 2.5rem 4rem;
   border-top: 1px solid var(--border);
 }
 [data-theme="light"] footer {
-  background: rgba(255,255,255,0.92);
-  border-top-color: var(--border);
+  background: rgba(255,255,255,0.96);
+  border-top-color: rgba(20,28,38,0.08);
   box-shadow: inset 0 1px 0 rgba(20,28,38,0.04);
 }
 footer p {
-  font-size: 0.9rem; font-weight: 300;
+  font-size: 0.95rem;
+  font-weight: 300;
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.8;
+  margin: 0;
 }
-[data-theme="light"] footer p {
+[data-theme="light"] footer p,
+[data-theme="light"] footer a {
+  color: var(--text-mid);
+}
+footer a {
+  color: var(--text-mid);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+footer a:hover {
+  color: var(--gold-light);
+}
+.footer-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+.footer-brand {
+  max-width: 380px;
+}
+.footer-brand p {
+  margin-top: 1rem;
+}
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(160px, 1fr));
+  gap: 1.5rem;
+  width: min(100%, 520px);
+}
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.footer-section h4 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0;
+}
+@media (max-width: 1024px) {
+  footer { padding: 2rem 2.5rem; }
+  .footer-links { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  footer { padding: 1.8rem 1.25rem; }
+  .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+  .footer-links { grid-template-columns: 1fr; width: 100%; }
+}
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.72rem;
+}
+.footer-section li {
+  margin: 0;
+}
+.footer-section a {
+  color: var(--text-mid);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.footer-section a:hover {
+  color: var(--gold-light);
+}
+.footer-logo {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--gold-light);
+  text-decoration: none;
+}
+.footer-logo:hover .brand-text {
+  color: var(--gold);
+}
+.footer-legal p {
   color: var(--text-mid);
 }
 
-.footer-logo {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  width: auto;
-  height: auto;
-  color: var(--gold-light); text-decoration: none; position: relative;
+@media (max-width: 1024px) {
+  footer { padding: 2.5rem 2.5rem; }
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  footer { padding: 2rem 1.25rem; }
+  .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .footer-brand,
+  .footer-section { align-items: center; text-align: center; }
+  .footer-section ul { justify-items: center; }
 }
 
 /* ═══════════ DIVIDER ═══════════ */
@@ -1665,7 +1754,7 @@ footer p {
   <h2 class="section-title">Interactive Skills Visualization</h2>
   <p class="projects-intro reveal">A practical view of where I am strongest today, with animated indicators that activate as the section enters view.</p>
   <div class="visual-skills-grid">
-    <div class="visual-skill reveal" style="--level: 92%"><div class="card-kicker">Frontend</div><h3>Interfaces &amp; Responsiveness</h3><div class="skill-meter"><span></span></div><div class="skill-meta"><span>HTML, CSS, JavaScript</span><strong>92%</strong></div></div>
+    <div class="visual-skill reveal" style="--level: 92%"><div class="card-kicker">Frontend</div><h3>Interfaces &amp; Responsiveness</h3><div class="skill-meter"><span></span></div><div class="skill-meta"><span>HTML, CSS, Tailwind, JavaScript</span><strong>92%</strong></div></div>
     <div class="visual-skill reveal" style="--level: 88%"><div class="card-kicker">Backend</div><h3>Django, Flask &amp; APIs</h3><div class="skill-meter"><span></span></div><div class="skill-meta"><span>Python web systems</span><strong>88%</strong></div></div>
     <div class="visual-skill reveal" style="--level: 82%"><div class="card-kicker">Data</div><h3>SQL &amp; Analysis</h3><div class="skill-meter"><span></span></div><div class="skill-meta"><span>Decision support</span><strong>82%</strong></div></div>
     <div class="visual-skill reveal" style="--level: 86%"><div class="card-kicker">Product</div><h3>UX Thinking</h3><div class="skill-meter"><span></span></div><div class="skill-meta"><span>User-centered flows</span><strong>86%</strong></div></div>
@@ -1720,6 +1809,8 @@ footer p {
       <div class="project-tech">
         <span class="tech-pill live">Live</span>
         <span class="tech-pill">Full-Stack</span>
+        <span class="tech-pill">Django</span>
+        <span class="tech-pill">Tailwind CSS</span>
         <span class="tech-pill">Housing Tech</span>
         <span class="tech-pill">Render</span>
       </div>
@@ -1738,6 +1829,7 @@ footer p {
         <span class="tech-pill live">Live</span>
         <span class="tech-pill">Corporate Website</span>
         <span class="tech-pill">Construction</span>
+        <span class="tech-pill">Tailwind CSS</span>
         <span class="tech-pill">Netlify</span>
       </div>
       <div class="project-actions">
@@ -1752,6 +1844,7 @@ footer p {
       <h3 class="project-title">TBKNS HUB</h3>
       <p class="project-desc">A live brand website for my digital solutions studio, presenting services, process, contact flows, and agency positioning for businesses that need technology support.</p>
       <div class="project-tech">
+        <span class="tech-pill">Django</span>
         <span class="tech-pill">HTML</span>
         <span class="tech-pill">Tailwind CSS</span>
         <span class="tech-pill">EmailJS</span>
@@ -1768,6 +1861,7 @@ footer p {
       <h3 class="project-title">EduHub</h3>
       <p class="project-desc">A student-focused academic resource hub with a clean interface for organising tools, materials, and learning support in one central place.</p>
       <div class="project-tech">
+        <span class="tech-pill">Django</span>
         <span class="tech-pill">HTML</span>
         <span class="tech-pill">Tailwind CSS</span>
         <span class="tech-pill">JavaScript</span>
@@ -1784,7 +1878,8 @@ footer p {
       <p class="project-desc">A web application for event scheduling, bookings, and coordination, built to simplify event organisation for individuals and businesses.</p>
       <div class="project-tech">
         <span class="tech-pill">Django</span>
-        <span class="tech-pill">Flask</span>
+        <span class="tech-pill">Tailwind CSS</span>
+        <span class="tech-pill">JavaScript</span>
         <span class="tech-pill">MySQL</span>
       </div>
       <div class="project-actions">
@@ -1799,6 +1894,8 @@ footer p {
       <p class="project-desc">An online shopping platform with product listings, user interaction, and transaction flow. Designed with a focus on performance and seamless user experience.</p>
       <div class="project-tech">
         <span class="tech-pill">Django</span>
+        <span class="tech-pill">HTML</span>
+        <span class="tech-pill">CSS</span>
         <span class="tech-pill">MySQL</span>
         <span class="tech-pill">JavaScript</span>
       </div>
@@ -1813,8 +1910,9 @@ footer p {
       <h3 class="project-title">Driver Management System</h3>
       <p class="project-desc">A system built to manage driver records, track activities, and organise transportation operations. Focused on robust data handling, structure, and usability.</p>
       <div class="project-tech">
-        <span class="tech-pill">Django</span>
         <span class="tech-pill">Flask</span>
+        <span class="tech-pill">HTML</span>
+        <span class="tech-pill">CSS</span>
         <span class="tech-pill">MySQL</span>
       </div>
       <div class="project-actions">
@@ -1831,6 +1929,7 @@ footer p {
         <span class="tech-pill">HTML</span>
         <span class="tech-pill">CSS</span>
         <span class="tech-pill">JavaScript</span>
+        <span class="tech-pill">Tailwind CSS</span>
       </div>
       <div class="project-actions">
         <a href="#hero" class="project-link">View Page</a>
@@ -2001,7 +2100,7 @@ footer p {
   <h2 class="section-title">Employer Snapshot</h2>
   <p class="projects-intro reveal">A focused view for hiring teams who need the signal quickly.</p>
   <div class="recruiter-grid">
-    <div class="recruiter-card reveal"><div class="card-kicker">Role Fit</div><h3>Full-stack developer</h3><p>Python, Django, Flask, SQL, JavaScript, responsive UI, deployment, and product-minded execution.</p><div class="feature-actions"><a href="MAIN_CV.pdf" target="_blank" rel="noopener" class="btn-primary">Download CV</a><a href="mailto:oluwasegunemmanueltobiloba@gmail.com" class="btn-ghost">Email Me</a></div></div>
+    <div class="recruiter-card reveal"><div class="card-kicker">Role Fit</div><h3>Full-stack developer</h3><p>Python, Django, Tailwind, Flask, SQL, JavaScript, responsive UI, deployment, and product-minded execution.</p><div class="feature-actions"><a href="MAIN_CV.pdf" target="_blank" rel="noopener" class="btn-primary">Download CV</a><a href="mailto:oluwasegunemmanueltobiloba@gmail.com" class="btn-ghost">Email Me</a></div></div>
     <div class="recruiter-card reveal"><div class="card-kicker">Best Proof</div><h3>What to review first</h3><ul class="feature-list"><li>RentFair for full-stack product thinking.</li><li>Faktop for polished business-facing delivery.</li><li>GitHub dashboard for current public activity.</li><li>Project modals for challenge, solution, and outcome summaries.</li></ul></div>
   </div>
 </section>
@@ -2093,11 +2192,29 @@ footer p {
 </div>
 
 <footer>
-  <a href="#hero" class="footer-logo" aria-label="TBKNS home">
-    <img src="tbkns-logo-icon.png" alt="TBKNS logo icon" class="brand-logo-img logo-icon" width="389" height="351">
-    <span class="brand-text">TBKNS</span>
-  </a>
-  <p>&copy; <span id="year">2026</span> Oluwasegun Emmanuel Tobi. Focused on quality, built for trust.</p>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#hero" class="footer-logo" aria-label="TBKNS home">
+        <img src="tbkns-logo-icon.png" alt="TBKNS logo icon" class="brand-logo-img logo-icon" width="389" height="351">
+        <span class="brand-text">TBKNS</span>
+      </a>
+      <p>Focused on quality, built for trust. Designed and developed by Oluwasegun Emmanuel Tobi.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-section">
+        <h4>Quick links</h4>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <a href="mailto:oluwasegunemmanueltobiloba@gmail.com">oluwasegunemmanueltobiloba@gmail.com</a>
+        <p>&copy; <span id="year">2026</span> TBKNS. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <script>

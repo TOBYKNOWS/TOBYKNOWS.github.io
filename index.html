@@ -714,85 +714,6 @@ section { padding: 8rem 4rem; }
   border-color: rgba(200,170,110,0.2);
 }
 
-/* ═══════════ SCREENSHOTS ═══════════ */
-.screenshot-gallery {
-  background: var(--bg);
-  padding: 8rem 4rem;
-}
-
-.gallery-inner { position: relative; max-width: 1180px; margin: 2.5rem auto 0; }
-.gallery-wrapper { overflow: hidden; border-radius: 12px; }
-.gallery-track {
-  display: flex; gap: 1.25rem;
-  transition: transform 0.5s var(--ease);
-  will-change: transform;
-}
-
-.screenshot-card {
-  flex: 0 0 100%; min-width: 100%;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px; overflow: hidden;
-  cursor: pointer; transition: var(--transition);
-}
-.screenshot-card:hover { border-color: var(--gold-border); box-shadow: 0 24px 60px rgba(0,0,0,0.3); }
-
-.screenshot-image {
-  width: 100%; height: clamp(260px, 32vw, 420px); object-fit: cover; object-position: top center; display: block;
-  transition: transform 0.6s var(--ease);
-}
-.screenshot-card:hover .screenshot-image { transform: scale(1.03); }
-
-.screenshot-card-content { padding: 1.75rem 2rem; }
-.screenshot-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; }
-.screenshot-card-text { font-size: 0.9rem; color: var(--text-mid); line-height: 1.75; }
-
-.slider-controls {
-  position: absolute; top: min(210px, 16vw); left: 0; right: 0;
-  display: flex; justify-content: space-between;
-  transform: translateY(-50%); pointer-events: none;
-}
-.slider-button {
-  pointer-events: auto; width: 46px; height: 46px;
-  border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
-  background: rgba(7,9,13,0.85); color: var(--text);
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; cursor: pointer; transition: var(--transition);
-  backdrop-filter: blur(8px);
-}
-.slider-button:hover {
-  border-color: var(--gold-border);
-  background: rgba(200,170,110,0.12);
-  color: var(--gold); transform: scale(1.08);
-}
-.slider-button:disabled { opacity: 0.25; cursor: default; }
-
-.slider-dots { display: flex; justify-content: center; gap: 0.6rem; margin-top: 1.5rem; }
-.slider-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: rgba(255,255,255,0.12); border: none;
-  cursor: pointer; transition: var(--transition);
-}
-.slider-dot:hover, .slider-dot.active {
-  background: var(--gold); transform: scale(1.2);
-}
-[data-theme="light"] .slider-button {
-  background: rgba(255,255,255,0.92);
-  border-color: rgba(20,28,38,0.14);
-  color: var(--text);
-}
-[data-theme="light"] .slider-button:hover {
-  background: rgba(155,120,56,0.16);
-  color: var(--gold);
-}
-[data-theme="light"] .slider-dot {
-  background: rgba(20,28,38,0.12);
-}
-[data-theme="light"] .slider-dot:hover,
-[data-theme="light"] .slider-dot.active {
-  background: var(--gold);
-}
-
 /* ═══════════ ADVANCED PORTFOLIO SECTIONS ═══════════ */
 .rentfair-showcase,
 .insights,
@@ -1336,23 +1257,26 @@ footer a:hover {
   color: var(--gold-light);
 }
 .footer-inner {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 2.5rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(220px, 1.2fr) minmax(140px, 0.7fr) minmax(260px, 1fr);
+  gap: 4rem;
+  max-width: 1180px;
+  margin: 0 auto;
 }
 .footer-brand {
-  max-width: 380px;
+  max-width: 300px;
 }
-.footer-brand p {
-  margin-top: 1rem;
+.footer-brand::after {
+  content: 'Full-stack development, product-minded design, and digital experiences built for real businesses.';
+  display: block;
+  max-width: 250px;
+  margin-top: 1.15rem;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  line-height: 1.7;
 }
 .footer-links {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(160px, 1fr));
-  gap: 1.5rem;
-  width: min(100%, 520px);
+  display: contents;
 }
 .footer-section {
   display: flex;
@@ -1369,12 +1293,15 @@ footer a:hover {
 }
 @media (max-width: 1024px) {
   footer { padding: 2rem 2.5rem; }
-  .footer-links { grid-template-columns: 1fr 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .footer-brand { grid-column: 1 / -1; max-width: 420px; }
 }
 @media (max-width: 640px) {
   footer { padding: 1.8rem 1.25rem; }
-  .footer-inner { flex-direction: column; align-items: center; text-align: center; }
-  .footer-links { grid-template-columns: 1fr; width: 100%; }
+  .footer-inner { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+  .footer-brand { grid-column: auto; max-width: 100%; }
+  .footer-brand::after { margin-inline: auto; }
+  .footer-section { align-items: center; }
 }
 .footer-section ul {
   list-style: none;
@@ -1406,17 +1333,79 @@ footer a:hover {
   color: var(--text-mid);
 }
 
-@media (max-width: 1024px) {
-  footer { padding: 2.5rem 2.5rem; }
-  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cookie-banner {
+  position: fixed;
+  left: 50%;
+  bottom: 1.25rem;
+  z-index: 350;
+  width: min(760px, calc(100% - 2.5rem));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.15rem 1.35rem;
+  border: 1px solid var(--gold-border);
+  border-radius: 10px;
+  background: rgba(13,18,24,0.96);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.3);
+  backdrop-filter: blur(18px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 140%);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), visibility 0.4s var(--ease);
 }
+.cookie-banner.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+.cookie-banner p {
+  max-width: 510px;
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.65;
+  color: var(--text-mid);
+}
+.cookie-banner .card-kicker { margin-bottom: 0.35rem; }
+.cookie-actions { display: flex; flex-shrink: 0; gap: 0.55rem; }
+.cookie-button {
+  min-height: 36px;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--gold-border);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--text-mid);
+  font: inherit;
+  font-size: 0.67rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.cookie-button:hover { color: var(--gold-light); border-color: var(--gold); }
+.cookie-button.primary { color: #07090d; background: var(--gold); border-color: var(--gold); }
+.cookie-button.primary:hover { background: var(--gold-light); color: #07090d; }
+.footer-cookie-link {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--text-mid);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.footer-cookie-link:hover { color: var(--gold-light); }
 
 @media (max-width: 640px) {
-  footer { padding: 2rem 1.25rem; }
-  .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-  .footer-brand,
-  .footer-section { align-items: center; text-align: center; }
-  .footer-section ul { justify-items: center; }
+  .cookie-banner {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.9rem;
+    bottom: 0.75rem;
+    width: calc(100% - 1.5rem);
+    padding: 1rem;
+  }
+  .cookie-actions { justify-content: flex-end; }
 }
 
 /* ═══════════ DIVIDER ═══════════ */
@@ -1459,7 +1448,6 @@ footer a:hover {
 @media (max-width: 1024px) {
   nav { padding: 0.75rem 2.5rem; }
   section { padding: 6rem 2.5rem; }
-  .screenshot-gallery { padding: 6rem 2.5rem; }
   .hero { padding: 8.75rem 2.5rem 5rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
   .hero-image-wrapper { justify-content: center; }
@@ -1473,8 +1461,6 @@ footer a:hover {
 @media (max-width: 768px) {
   .projects-grid { grid-template-columns: 1fr; }
   .project-card.featured { grid-column: auto; }
-  .screenshot-image { height: 280px; }
-  .slider-controls { top: 140px; }
   .dashboard-grid,
   .visual-skills-grid,
   .testimonial-grid,
@@ -1494,10 +1480,6 @@ footer a:hover {
   .footer-logo .brand-text { font-size: 0.96rem; letter-spacing: 0.16em; }
   .loader-logo { height: 64px; }
   section { padding: 4.5rem 1.25rem; }
-  .screenshot-gallery { padding: 4.5rem 1.25rem; }
-  .screenshot-image { height: 220px; }
-  .screenshot-card-content { padding: 1.35rem 1.25rem; }
-  .slider-controls { top: 110px; }
   .hero { min-height: auto; padding: 7rem 1.25rem 4.25rem; }
   .hero-inner { gap: 2.5rem; }
   .hero-tag {
@@ -1632,7 +1614,7 @@ footer a:hover {
       </div>
     </div>
     <div class="hero-image-wrapper">
-      <img src="image.png" alt="Oluwasegun Emmanuel Tobi" class="hero-image">
+      <img src="tbkns.png" alt="Oluwasegun Emmanuel Tobi" class="hero-image">
     </div>
   </div>
   <div class="hero-scroll">
@@ -1816,7 +1798,6 @@ footer a:hover {
       </div>
       <div class="project-actions">
         <a href="https://rentfair.onrender.com" target="_blank" rel="noopener" class="project-link">Visit Site</a>
-        <a href="#screenshots" class="project-link">Preview</a>
         <button class="project-link case-trigger" type="button" data-case="rentfair">Case Study</button>
       </div>
     </div>
@@ -1851,7 +1832,6 @@ footer a:hover {
       </div>
       <div class="project-actions">
         <a href="https://faktop.netlify.app" target="_blank" rel="noopener" class="project-link">Visit Site</a>
-        <a href="#screenshots" class="project-link">Preview</a>
         <button class="project-link case-trigger" type="button" data-case="faktop">Case Study</button>
       </div>
     </div>
@@ -1884,7 +1864,6 @@ footer a:hover {
         <span class="tech-pill">JavaScript</span>
       </div>
       <div class="project-actions">
-        <a href="#screenshots" class="project-link">Preview</a>
         <button class="project-link case-trigger" type="button" data-case="eduhub">Case Study</button>
       </div>
     </div>
@@ -1918,7 +1897,6 @@ footer a:hover {
         <span class="tech-pill">MySQL</span>
       </div>
       <div class="project-actions">
-        <a href="#screenshots" class="project-link">Preview</a>
         <button class="project-link case-trigger" type="button" data-case="drivers">Case Study</button>
       </div>
     </div>
@@ -1939,10 +1917,85 @@ footer a:hover {
       </div>
     </div>
 
+    <div class="project-card featured reveal">
+      <div class="project-number">10</div>
+      <h3 class="project-title">TBKNS Logistics</h3>
+      <p class="project-desc">A professional logistics website built to present delivery services clearly, establish trust with customers, and make it easier to start a business enquiry.</p>
+      <div class="project-tech">
+        <span class="tech-pill live">Live</span>
+        <span class="tech-pill">Logistics</span>
+        <span class="tech-pill">Business Website</span>
+        <span class="tech-pill">Responsive</span>
+      </div>
+      <div class="project-actions">
+        <a href="https://tbknslogistics.netlify.app" target="_blank" rel="noopener" class="project-link">Visit Site</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-number">11</div>
+      <h3 class="project-title">Aklad Nation Unisex Salon</h3>
+      <p class="project-desc">A polished salon website designed to showcase grooming services, express a distinct brand identity, and guide visitors toward booking or making contact.</p>
+      <div class="project-tech">
+        <span class="tech-pill live">Live</span>
+        <span class="tech-pill">Salon</span>
+        <span class="tech-pill">Service Website</span>
+        <span class="tech-pill">Responsive</span>
+      </div>
+      <div class="project-actions">
+        <a href="https://barbmestyle.netlify.app" target="_blank" rel="noopener" class="project-link">Visit Site</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-number">12</div>
+      <h3 class="project-title">Shiz Place Store</h3>
+      <p class="project-desc">An online shopping experience focused on product discovery, clear presentation, and a smooth path from browsing to purchase across devices.</p>
+      <div class="project-tech">
+        <span class="tech-pill live">Live</span>
+        <span class="tech-pill">E-commerce</span>
+        <span class="tech-pill">Shopping</span>
+        <span class="tech-pill">Responsive</span>
+      </div>
+      <div class="project-actions">
+        <a href="https://shizplace.netlify.app" target="_blank" rel="noopener" class="project-link">Visit Site</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-number">13</div>
+      <h3 class="project-title">Royal Wealth Perfumery</h3>
+      <p class="project-desc">A fragrance-focused storefront with an elegant shopping presentation that gives products room to stand out while keeping the browsing journey intuitive.</p>
+      <div class="project-tech">
+        <span class="tech-pill live">Live</span>
+        <span class="tech-pill">E-commerce</span>
+        <span class="tech-pill">Beauty Retail</span>
+        <span class="tech-pill">Responsive</span>
+      </div>
+      <div class="project-actions">
+        <a href="https://rwpshop.netlify.app" target="_blank" rel="noopener" class="project-link">Visit Site</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-number">14</div>
+      <h3 class="project-title">Royal Gee Furnitures</h3>
+      <p class="project-desc">A furniture brand website created to present handcrafted pieces with a refined visual direction and a clear route for customers to explore the collection.</p>
+      <div class="project-tech">
+        <span class="tech-pill live">Live</span>
+        <span class="tech-pill">Furniture</span>
+        <span class="tech-pill">Brand Website</span>
+        <span class="tech-pill">Responsive</span>
+      </div>
+      <div class="project-actions">
+        <a href="https://royalgeewood.netlify.app" target="_blank" rel="noopener" class="project-link">Visit Site</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- ══ SCREENSHOTS ══ -->
+<!-- ══ IMPACT ══ -->
 <section class="impact" id="impact">
   <div class="section-label">Measured Value</div>
   <h2 class="section-title">Project Metrics &amp; Impact</h2>
@@ -1980,72 +2033,6 @@ footer a:hover {
         <div class="repo-item"><strong>Portfolio</strong><span>Frontend</span></div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="screenshot-gallery" id="screenshots">
-  <div class="section-label">Screenshots</div>
-  <h2 class="section-title">Project Previews</h2>
-  <p class="projects-intro reveal">Selected interfaces from live builds, including RentFair's verified housing experience, ErrandEye's service platform, and Faktop Global Limited's corporate website.</p>
-  <div class="gallery-inner reveal">
-    <div class="gallery-wrapper">
-      <div class="gallery-track">
-        <div class="screenshot-card">
-          <img src="faktop-home.png" alt="Faktop Global Limited website home page" class="screenshot-image">
-          <div class="screenshot-card-content">
-            <div class="screenshot-card-title">Faktop Global Limited</div>
-            <p class="screenshot-card-text">Deployed civil infrastructure website with a premium corporate presentation and clear project assessment call to action.</p>
-          </div>
-        </div>
-        <div class="screenshot-card">
-          <img src="rentfair-home.png" alt="RentFair Homes landing page" class="screenshot-image">
-          <div class="screenshot-card-content">
-            <div class="screenshot-card-title">RentFair Homes</div>
-            <p class="screenshot-card-text">Landing experience for finding verified homes, land, and rentals with a clear trust-first property search direction.</p>
-          </div>
-        </div>
-        <div class="screenshot-card">
-          <img src="rentfair-search.png" alt="RentFair property search and trust score interface" class="screenshot-image">
-          <div class="screenshot-card-content">
-            <div class="screenshot-card-title">RentFair Search</div>
-            <p class="screenshot-card-text">A property search workflow supported by verification, pricing context, and a visible trust-score summary.</p>
-          </div>
-        </div>
-        <div class="screenshot-card">
-          <img src="rentfair-about.png" alt="About RentFair Homes page" class="screenshot-image">
-          <div class="screenshot-card-content">
-            <div class="screenshot-card-title">About RentFair</div>
-            <p class="screenshot-card-text">Brand and mission page communicating transparency, trust, and accessibility in the Nigerian property market.</p>
-          </div>
-        </div>
-        <div class="screenshot-card">
-          <img src="errand.png" alt="ErrandEye Screenshot" class="screenshot-image">
-          <div class="screenshot-card-content">
-            <div class="screenshot-card-title">ErrandEye</div>
-            <p class="screenshot-card-text">ErrandEye — on-demand errands and service booking platform with clear provider profiles and seamless request flows.</p>
-          </div>
-        </div>
-        <div class="screenshot-card">
-          <img src="Edu-screenshot.png" alt="EduHub Screenshot" class="screenshot-image">
-          <div class="screenshot-card-content">
-            <div class="screenshot-card-title">EduHub</div>
-            <p class="screenshot-card-text">Modern web platform for students to access academic resources and tools in one centralised system.</p>
-          </div>
-        </div>
-        <div class="screenshot-card">
-          <img src="drivers.png" alt="Drivers Management System Screenshot" class="screenshot-image">
-          <div class="screenshot-card-content">
-            <div class="screenshot-card-title">Driver Management System</div>
-            <p class="screenshot-card-text">System for managing driver records, tracking activities, and organising transportation operations.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="slider-controls" aria-label="Screenshot carousel controls">
-      <button class="slider-button slider-prev" type="button" aria-label="Previous screenshot">&#8249;</button>
-      <button class="slider-button slider-next" type="button" aria-label="Next screenshot">&#8250;</button>
-    </div>
-    <div class="slider-dots" aria-label="Screenshot carousel pagination"></div>
   </div>
 </section>
 
@@ -2194,6 +2181,17 @@ footer a:hover {
   </div>
 </div>
 
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie notice" aria-live="polite">
+  <div>
+    <div class="card-kicker">Privacy</div>
+    <p>This portfolio uses essential storage to remember your theme and cookie preference. No advertising or tracking cookies are used.</p>
+  </div>
+  <div class="cookie-actions">
+    <button class="cookie-button" id="declineCookies" type="button">Decline</button>
+    <button class="cookie-button primary" id="acceptCookies" type="button">Accept</button>
+  </div>
+</div>
+
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
@@ -2201,7 +2199,6 @@ footer a:hover {
         <img src="tbkns-logo-icon.png" alt="TBKNS logo icon" class="brand-logo-img logo-icon" width="389" height="351">
         <span class="brand-text">TBKNS</span>
       </a>
-      <p>Focused on quality, built for trust. Designed and developed by Oluwasegun Emmanuel Tobi.</p>
     </div>
     <div class="footer-links">
       <div class="footer-section">
@@ -2214,6 +2211,7 @@ footer a:hover {
       <div class="footer-section">
         <h4>Contact</h4>
         <a href="mailto:oluwasegunemmanueltobiloba@gmail.com">oluwasegunemmanueltobiloba@gmail.com</a>
+        <button class="footer-cookie-link" id="cookieSettings" type="button">Cookie settings</button>
         <p>&copy; <span id="year">2026</span> TBKNS. All rights reserved.</p>
       </div>
     </div>
@@ -2227,6 +2225,28 @@ const preferredTheme = window.matchMedia('(prefers-color-scheme: light)').matche
 document.documentElement.setAttribute('data-theme', savedTheme || preferredTheme);
 
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// ── Cookie consent
+const cookieConsentKey = 'tbkns-cookie-consent';
+const cookieBanner = document.getElementById('cookieBanner');
+const readCookieConsent = () => {
+  const cookie = document.cookie.split('; ').find(item => item.startsWith(`${cookieConsentKey}=`));
+  return cookie ? cookie.split('=')[1] : localStorage.getItem(cookieConsentKey);
+};
+const writeCookieConsent = value => {
+  document.cookie = `${cookieConsentKey}=${value}; max-age=15552000; path=/; SameSite=Lax`;
+  localStorage.setItem(cookieConsentKey, value);
+  cookieBanner?.classList.remove('is-visible');
+};
+const showCookieBanner = () => cookieBanner?.classList.add('is-visible');
+if (!readCookieConsent()) window.setTimeout(showCookieBanner, 700);
+document.getElementById('acceptCookies')?.addEventListener('click', () => writeCookieConsent('accepted'));
+document.getElementById('declineCookies')?.addEventListener('click', () => writeCookieConsent('declined'));
+document.getElementById('cookieSettings')?.addEventListener('click', () => {
+  document.cookie = `${cookieConsentKey}=; max-age=0; path=/`;
+  localStorage.removeItem(cookieConsentKey);
+  showCookieBanner();
+});
 
 // Branded loading intro
 const siteLoader = document.getElementById('siteLoader');
@@ -2305,47 +2325,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── Slider
-  const track = document.querySelector('.gallery-track');
-  const slides = document.querySelectorAll('.gallery-track .screenshot-card');
-  const prevBtn = document.querySelector('.slider-prev');
-  const nextBtn = document.querySelector('.slider-next');
-  const dotsContainer = document.querySelector('.slider-dots');
-
-  if (track && slides.length) {
-    let current = 0;
-    const gap = parseFloat(getComputedStyle(track).columnGap) || 20;
-
-    const update = () => {
-      const w = slides[0].offsetWidth;
-      track.style.transform = `translateX(-${(w + gap) * current}px)`;
-      dotsContainer.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === current));
-      prevBtn.disabled = current === 0;
-      nextBtn.disabled = current === slides.length - 1;
-    };
-
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.type = 'button'; dot.className = 'slider-dot';
-      dot.ariaLabel = `Slide ${i + 1}`;
-      dot.addEventListener('click', () => { current = i; update(); });
-      dotsContainer.appendChild(dot);
-    });
-
-    prevBtn.addEventListener('click', () => { if (current > 0) { current--; update(); } });
-    nextBtn.addEventListener('click', () => { if (current < slides.length - 1) { current++; update(); } });
-
-    // Touch / swipe
-    let startX = 0;
-    track.parentElement.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-    track.parentElement.addEventListener('touchend', e => {
-      const dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 50) { dx < 0 ? nextBtn.click() : prevBtn.click(); }
-    });
-
-    update();
-  }
-
   const caseStudies = {
     rentfair: ['RentFair', 'Full-stack housing platform', 'Rental discovery can be opaque, expensive, and vulnerable to exploitative pricing or unclear agent participation.', 'Built a trust-first property experience with clear positioning, searchable property context, and deployment-ready full-stack structure.', 'A live product that communicates fairness, transparency, and practical housing access.'],
     faktop: ['Faktop Global Limited', 'Corporate website', 'A civil infrastructure company needed a credible digital presence that made services and project inquiry pathways clear.', 'Designed a polished business website with strong service hierarchy, credibility cues, and conversion-focused calls to action.', 'A deployed Netlify experience suitable for client discovery and professional validation.'],
@@ -2354,7 +2333,7 @@ document.addEventListener('DOMContentLoaded', () => {
     events: ['Event Management System', 'Operations web app', 'Event organizers need structure for scheduling, bookings, and coordination.', 'Designed the app concept around event records, booking logic, and maintainable database-backed workflows.', 'A practical management-system foundation for small teams and business event operations.'],
     errandeye: ['ErrandEye', 'Service & errands platform', 'Users and teams need trusted, on-demand help for errands, logistics, and concierge tasks.', 'Built a service-focused platform with request workflows, provider profiles, booking flows, and confirmation paths to support reliable task delivery.', 'A live, deployable product that connects users with verified errand providers and simplifies task coordination.'],
     drivers: ['Driver Management System', 'Transport operations', 'Transport teams need clearer records, activity tracking, and operational visibility.', 'Structured the system around driver data, activity management, and admin usability.', 'A workflow-oriented tool for organizing transportation operations.'],
-    portfolio: ['Personal Portfolio', 'Professional brand system', 'A developer portfolio must balance visual polish, proof, recruiter clarity, and performance.', 'Built a premium single-page experience with projects, screenshots, contact flows, and now advanced employer-facing sections.', 'A stronger professional surface for roles, freelance inquiries, and product storytelling.']
+    portfolio: ['Personal Portfolio', 'Professional brand system', 'A developer portfolio must balance visual polish, proof, recruiter clarity, and performance.', 'Built a premium single-page experience with projects, contact flows, and advanced employer-facing sections.', 'A stronger professional surface for roles, freelance inquiries, and product storytelling.']
   };
   const modal = document.getElementById('caseStudyModal');
   const caseTitle = document.getElementById('caseTitle');
